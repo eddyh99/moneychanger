@@ -1,0 +1,207 @@
+:root{
+    --expat-text-primary: #263B80;
+    --expat-bg-primary: #263B80;
+    --expat-bg-primary-dark: #263B80;
+    --expat-text-active-sidebar: #0035c8;
+}
+
+.btn-expat {
+    color: #ffffff;
+    background-color: var(--expat-bg-primary);
+    border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+}
+
+.btn-expat:hover {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: var(--expat-bg-primary-dark);
+    border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+}
+
+.btn-outline-expat{
+    border: 1px solid var(--expat-bg-primary);
+    background-color: transparent;
+    color: var(--expat-text-primary);
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+.btn-outline-expat:hover{
+    border: 1px solid var(--expat-bg-primary);
+    background-color: var(--expat-bg-primary);
+    color: #ffffff;
+}
+
+.text-monex-blue {
+    color: var(--expat-text-active-sidebar) !important;
+}
+
+
+
+/* .border-expat {
+    border: 1px solid var(--expat-bg-primary);
+} */
+
+.wrapper-kode-ticket {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #5A6A85;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid #DFE5EF;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 7px;
+}
+
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item .sidebar-link.active {
+    color: var(--expat-text-active-sidebar) !important;
+}
+
+.collapse.in {
+    display: block;
+}
+
+
+.sidebar-nav ul .sidebar-item .first-level .sidebar-link .ti{
+    font-size: 20px;
+}
+
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item .sidebar-link.active{
+    background-color: transparent !important;
+    color: var(--expat-text-active-sidebar) !important;
+}
+
+.sidebar-nav .has-arrow::after{
+    position: absolute;
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+    border-color: var(--bs-dark-text-emphasis);
+    margin-left: 10px;
+    transform: rotate(135deg) translate(0, -50%);
+    transform-origin: top;
+    top: 22px;
+    right: 15px;
+    transition: all 0.3s ease-out;
+}
+
+.sidebar-nav li.active > .has-arrow::after, 
+.sidebar-nav li > .has-arrow.active::after, 
+.sidebar-nav .has-arrow[aria-expanded=true]::after {
+    top: 18px;
+    margin-top: 1px;
+    border-color: var(--bs-white);
+    transform: rotate(-135deg) translate(0, -50%);
+}
+
+.input-total-rangkuman {
+    border-radius: 0px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid #000000;
+    height: 20px;
+    padding: 15px;
+}
+
+.dash-preview {
+    width: 60px;
+    height: 60px;
+}
+
+.bg-login {
+    background-image: url('../img/bg-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-select.member-status {
+    width: 100%;
+}
+
+
+.input-outlet-image {
+    border: 1px solid #e5e5e5;
+  }
+  
+
+.input-outlet-image input[type=file]::file-selector-button {
+    background-color: #fff;
+    color: #000;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    margin-right: 20px;
+    transition: .5s;
+}
+
+.input-outlet-image input[type=file]::file-selector-button:hover {
+    background-color: #eee;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.preview-image-container{
+    padding: 10px ;
+    max-height: 300px;
+    max-width: 100%;
+    width: 400px;
+    background-color:#f6f6f6;
+    border: 2px dashed var(--expat-text-primary);
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+
+.preview-image-container {
+border-radius: 10px;
+}
+
+
+
+
+
+/* OVERIDE CSS */
+.form-control:focus{
+    border-color: var(--expat-text-primary);
+}
+
+.form-control.login{
+    color: #ffffff !important;
+}
+
+.form-control.login:focus{
+    border-color: var(--expat-text-primary);
+    color: #ffffff !important;
+}
+
+option {
+    height: 40px !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: var(--expat-bg-primary) !important;
+}
