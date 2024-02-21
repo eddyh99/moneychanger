@@ -23,6 +23,7 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                <?php if($_SESSION['logged_user']['role'] == 'admin'){?>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">MASTER</span>
@@ -71,7 +72,9 @@
                         </li>
                     </ul>
                 </li>
-             
+                <?php }?>
+
+                <?php if($_SESSION['logged_user']['role'] == 'kasir'){?>
                 <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$kas_active?>" href="<?= base_url()?>kas" aria-expanded="false">
                         <span>
@@ -82,7 +85,6 @@
                         </span>
                     </a>
                 </li>
-
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Transaction</span>
@@ -98,6 +100,7 @@
                         </span>
                     </a>
                 </li>
+                <?php }?>
                 
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>

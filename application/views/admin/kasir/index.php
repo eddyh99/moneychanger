@@ -23,7 +23,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php } ?>
-                    <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline">Money Changer Canggu</span></h5>
+                    <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline"><?= $_SESSION['logged_user']['cabang']?></span></h5>
                     <form action="<?= base_url()?>kas/addkas_process" method="POST">
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                         <div class="row pt-2 mb-5">

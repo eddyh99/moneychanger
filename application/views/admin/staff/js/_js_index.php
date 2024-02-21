@@ -34,7 +34,7 @@
 			{ data: 'alamat' },
 			{ 
                 data: null, "mRender": function(data, type, full, meta) {
-					var btnDelete = '<a href="<?=base_url()?>cabang/delete?username='+encodeURI(btoa(full.username))+'&idcabang='+encodeURI(btoa(full.id))+'" class="del-data btn btn-danger my-1"><i class="ti ti-trash"></i></a>';
+					var btnDelete = '<a href="<?=base_url()?>staff/delete?username='+encodeURI(btoa(full.username))+'&idcabang='+encodeURI(btoa(full.id))+'" class="del-data btn btn-danger my-1"><i class="ti ti-trash"></i></a>';
 					
 					return `${btnDelete}`;     
                 

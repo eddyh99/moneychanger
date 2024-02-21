@@ -44,9 +44,7 @@ class Auth extends CI_Controller
 		$url = URLAPI . "/auth/signin";
 		$response = expatAPI($url, json_encode($mdata));
 		$result = $response->result->messages;
-		// echo '<pre>'.print_r($response,true).'</pre>';
-		// die;
-		
+
 		if (@$response->status != 200) {
 			$this->session->set_flashdata('error', $result->error);
 			redirect("/");
@@ -57,6 +55,8 @@ class Auth extends CI_Controller
 		$temp_session = array(
 			'username'  => $result->username,
 			'role'      => $result->role,
+			'cabang'	=> $result->cabang,
+			'idcabang'	=> $result->cabang_id,
 			'is_login'  => true
 		);
 

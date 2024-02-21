@@ -105,19 +105,13 @@ class Staff extends CI_Controller
 
     public function delete()
     {
-        $id_member = base64_decode($this->security->xss_clean($id));
+        $username = base64_decode($this->security->xss_clean($_GET['username']));
+        $idcabang = base64_decode($this->security->xss_clean($_GET['idcabang']));
 
-        echo '<pre>'.print_r($_GET['username'],true).'</pre>';
-        echo '<pre>'.print_r($_GET['idcabang'],true).'</pre>';
-        die;
-
-
-        $url = URLAPI . "/v1/member/deleteMember?id=".$id_member;
+        $url = URLAPI . "/v1/user/deleteStaff?username=".$username."&cabang=".$idcabang ;
 		$response = expatAPI($url);
         $result = $response->result;
 
-        // echo '<pre>'.print_r($response,true).'</pre>';
-        // die;    
 
         if($response->status == 200){
             $this->session->set_flashdata('success', $result->messages);

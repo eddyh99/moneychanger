@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row my-4">
         <div class="col-lg-12 d-flex align-items-strech">
-            <a href="<?= base_url()?>cabang" class="btn btn-outline-expat d-flex align-items-center">
+            <a href="<?= base_url()?>staff" class="btn btn-outline-expat d-flex align-items-center">
                 <i class="ti ti-chevron-left fs-5 me-1"></i>
                 <span>
                     Kembali

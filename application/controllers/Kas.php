@@ -69,9 +69,24 @@ class Kas extends CI_Controller
             "nominal"       => $nominal,
             "jenis"         => $jenis,
             "keterangan"    => $keterangan,
+            "cabang"        => $_SESSION['logged_user']['idcabang'],
         );
-        echo '<pre>'.print_r($mdata,true).'</pre>';
-        die;
+
+            
+        $url = URLAPI . "/v1/kas/addKas";
+		$response = expatAPI($url, json_encode($mdata));
+        $result = $response->result;
+
+
+        if($response->status == 200) {
+            $this->session->set_flashdata('success', $result->messages);
+			redirect('kas');
+			return;
+        }else{
+            $this->session->set_flashdata('error', $result->messages->error);
+			redirect('kas/add_kas');
+			return;
+        }
 
     }
 }
