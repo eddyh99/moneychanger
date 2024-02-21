@@ -63,6 +63,7 @@
                                 <option value="PLN">PLN</option>
                                 <option value="RON">RON</option>
                                 <option value="SEK">SEK</option>
+                                <option value="SGD">SGD</option>
                                 <option value="THB">THB</option>
                                 <option value="TRY">TRY</option>
                                 <option value="TZS">TZS</option>

@@ -62,6 +62,7 @@
                                 <option value="PLN" <?= ($result->currency == "PLN") ? 'selected' : "" ?>>PLN</option>
                                 <option value="RON" <?= ($result->currency == "RON") ? 'selected' : "" ?>>RON</option>
                                 <option value="SEK" <?= ($result->currency == "SEK") ? 'selected' : "" ?>>SEK</option>
+                                <option value="SGD" <?= ($result->currency == "SGD") ? 'selected' : "" ?>>SGD</option>
                                 <option value="THB" <?= ($result->currency == "THB") ? 'selected' : "" ?>>THB</option>
                                 <option value="TRY" <?= ($result->currency == "TRY") ? 'selected' : "" ?>>TRY</option>
                                 <option value="TZS" <?= ($result->currency == "TZS") ? 'selected' : "" ?>>TZS</option>

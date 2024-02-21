@@ -69,33 +69,45 @@
                                 <span class="hide-menu">Rate Currency</span>
                             </a>
                         </li>
-                        <!-- <li class="sidebar-item">
-                            <a href="<?= base_url()?>employe" class="sidebar-link <?= @$dropdown_employe?>">
-                                <div class="round-16 ms-3 d-flex align-items-center justify-content-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4" /><path d="M15 19l2 2l4 -4" /></svg>
-                                </div>
-                                <span class="hide-menu">Employe</span>
-                            </a>
-                        </li>
-                   
-                        <li class="sidebar-item">
-                            <a href="<?= base_url()?>promotion" class="sidebar-link <?= @$dropdown_promotion?>">
-                                <div class="round-16 ms-3 d-flex align-items-center justify-content-center">
-                                <i class="ti ti-discount-2"></i>
-                                </div>
-                                <span class="hide-menu">Promotion</span>
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
+             
+                <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$kas_active?>" href="<?= base_url()?>kas" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-wallet"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Kas
+                        </span>
+                    </a>
+                </li>
+
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Transaction</span>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$kasir_active?>" href="<?= base_url()?>kasir" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-pig-money"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Kasir
+                        </span>
+                    </a>
+                </li>
+                
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Laporan</span>
+                </li>
+
+
                 <!-- <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$historytopup_active?>" href="<?= base_url()?>topup/history" aria-expanded="false">
-                        <span>
+                       <span>
                             <i class="ti ti-history"></i>
                         </span>
                         <span class="hide-menu">
@@ -103,7 +115,7 @@
                         </span>
                     </a>
                 </li> -->
-                <li class="sidebar-item mb-5 pb-5">
+                <li class="sidebar-item mb-5 pb-5 mt-3">
                     <a class="sidebar-link" href="<?= base_url()?>auth/logout" aria-expanded="false">
                         <span>
                             <i class="ti ti-logout"></i>
