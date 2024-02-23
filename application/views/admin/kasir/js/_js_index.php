@@ -15,29 +15,123 @@
     })
 
 
-    var rate;
-    var lembar;
-    var amount;
-    $("#currency").on("change", function(){
-        rate = Number($('#currency option:selected').attr('rate'));
-        $("#ratesummary").text(rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        $(".ratesum").val(rate * 2);
+    
+    function showRate(e, num){
+        var rate = Number(e.value.slice(4));  
+        console.log(rate);
+        console.log(num);
+        $("#ratesummary"+num).text(rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        $("#rate"+num).val(rate);
 
-        if($("#lembar").val() == '' || $("#lembar").val() == null){
+        if($("#lembar"+num).val() == '' || $("#lembar"+num).val() == null){
             console.log("KOSONG");
         }else{
-            amount = rate * lembar;
-            console.log(amount);
-            $("#amountsummary").text(amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            var amount = rate * $("#lembar"+num).val();
+            $("#amountsummary"+num).text(amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
-    })
 
-    $("#lembar").on("blur", function(){
-        lembar = $("#lembar").val();
-        amount = rate * lembar;
-        console.log(amount);
-        $("#amountsummary").text(amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        console.log("ON BLUR " +$("#lembar").val());
+        // var rate = 0;
+        // var lembar;
+        // var amount;
+        // $("#currency").on("change", function(){
+        //     rate = Number($('#currency option:selected').attr('rate'));
+        //     $("#ratesummary").text(rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        //     $(".ratesum").val(rate * 2);
+    
+        //     if($("#lembar").val() == '' || $("#lembar").val() == null){
+        //         console.log("KOSONG");
+        //     }else{
+        //         amount = rate * lembar;
+        //         console.log(amount);
+        //         $("#amountsummary").text(amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        //     }
+        // });
+    }
+
+    function lembarCalc(e, num){
+        var lembar = Number(e.value);
+        var rate = Number($("#rate"+num).val());
+        console.log(rate);
+        $("#amountsummary"+num).text((rate * lembar).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    }
+
+    // $("#lembar").on("blur", function(){
+    //     lembar = $("#lembar").val();
+    //     amount = rate * lembar;
+    //     console.log(amount);
+    //     $("#amountsummary").text(amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    // });
+
+
+    $(document).ready(function() {
+        var max_taps = 30;
+        var tap = 1;
+
+        $("#tambahcurrency").click(function(e) {
+            e.preventDefault();
+            tap++;
+            $('.wrapper-currency').append(`
+                <div class="row">
+                    <hr>
+                    <i class="removecurrency ti ti-square-x  text-danger text-end align-self-end" id="removecurrency" style="font-size: 26px; cursor: pointer;"></i>
+                    <div class="col-6 my-4">
+                        <div class="mb-3">
+                            <input type="hidden" name="rate[]" id="rate${tap}">
+                            <label for="name" class="form-label">Currency</label>
+                            <select name="currency[]"  class="currency form-select select-currency-withdraw" onchange="showRate(this, ${tap})">
+                                <option value="">--Select Currency--</option>  
+                                <?php foreach($currency as $dt){
+                                    if(
+                                        $dt->currency == 'USD' || $dt->currency == 'AUD' || $dt->currency == 'GBP' ||
+                                        $dt->currency == 'RMB' || $dt->currency == 'EUR' || $dt->currency == 'JPY'  
+                                    ){  
+                                ?>
+                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
+                                <?php 
+                                    }
+                                }?>
+
+                                <?php foreach($currency as $dt){
+                                    if(
+                                        $dt->currency != 'USD' && $dt->currency != 'AUD' && $dt->currency != 'GBP' &&
+                                        $dt->currency != 'RMB' && $dt->currency != 'EUR' && $dt->currency != 'JPY'  
+                                    ){  
+                                ?>
+                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
+                                <?php 
+                                    }
+                                }?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lembar" class="form-label">Lembar</label>
+                            <input type="number" class="form-control" id="lembar${tap}" onblur="lembarCalc(this, ${tap})" name="lembar[]" placeholder="Masukkan jumlah lembar..." required autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-6 my-4">
+                        <div class="mb-3 pt-1 d-flex flex-column justify-content-center align-items-center">
+                        
+                            <div>
+                                <h6 class="text-center">Rate:</h6>
+                                <h4 class="text-center">Rp. <span id="ratesummary${tap}" class="money-input">0</span></h4>
+                            </div>
+                            <div class="pt-4">
+                                <h6 class="text-center">Total Amount:</h6>
+                                <h3 class="text-center">Rp. <span id="amountsummary${tap}" class="money-input">0</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                
+
+            `);
+        });
+
+        $(".wrapper-currency").on("click", ".removecurrency", function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            tap--;
+        })
     })
 
 

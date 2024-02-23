@@ -91,7 +91,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link  <?= @$kasir_active?>" href="<?= base_url()?>kasir" aria-expanded="false">
+                    <a class="sidebar-link  <?= @$transaksi_active?>" href="<?= base_url()?>transaksi" aria-expanded="false">
                         <span>
                             <i class="ti ti-pig-money"></i>
                         </span>
