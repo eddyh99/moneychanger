@@ -50,6 +50,7 @@ class Cabang extends CI_Controller
     public function addcabang_process()
     {
 		$this->form_validation->set_rules('name', 'Name Cabang', 'trim|required');
+		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
 		$this->form_validation->set_rules('address', 'Alamat cabang', 'trim|required');
 		$this->form_validation->set_rules('contact', 'Kontak', 'trim|required');
 
@@ -61,11 +62,13 @@ class Cabang extends CI_Controller
 
         $input      = $this->input;
         $name       = $this->security->xss_clean($this->input->post("name"));
+        $kecamatan    = $this->security->xss_clean($this->input->post("kecamatan"));
         $address    = $this->security->xss_clean($this->input->post("address"));
         $contact    = $this->security->xss_clean($this->input->post("contact"));
 
         $mdata = array(
             "nama"        => $name,
+            "kecamatan"   => $kecamatan,
             "alamat"      => $address,
             "kontak"      => $contact,
         );
@@ -109,6 +112,7 @@ class Cabang extends CI_Controller
     public function editcabang_process()
     {
 		$this->form_validation->set_rules('name', 'Name cabang', 'trim|required');
+		$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
 		$this->form_validation->set_rules('address', 'Alamat cabang', 'trim|required');
 		$this->form_validation->set_rules('contact', 'Kontak', 'trim|required');
 
@@ -123,12 +127,14 @@ class Cabang extends CI_Controller
 
         $id             = base64_decode($urisegment);
         $name           = $this->security->xss_clean($input->post('name'));
-        $address       = $this->security->xss_clean($input->post('address'));
-        $contact       = $this->security->xss_clean($input->post('contact'));
+        $kecamatan      = $this->security->xss_clean($input->post('kecamatan'));
+        $address        = $this->security->xss_clean($input->post('address'));
+        $contact        = $this->security->xss_clean($input->post('contact'));
 
         
         $mdata = array(
             "nama"        => $name,
+            "kecamatan"      => $kecamatan,
             "alamat"      => $address,
             "kontak"      => $contact,
         );

@@ -29,6 +29,10 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama cabang..." required autocomplete="off">
                         </div>
                         <div class="mb-3">
+                            <label for="kecamatan" class="form-label">Kecamatan</label>
+                            <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Masukkan kecamatan..." required autocomplete="off">
+                        </div>
+                        <div class="mb-3">
                             <label for="address" class="form-label">Alamat Cabang</label>
                             <input type="text" class="form-control" id="address" name="address" placeholder="Masukkan alamat..." required autocomplete="off">
                         </div>

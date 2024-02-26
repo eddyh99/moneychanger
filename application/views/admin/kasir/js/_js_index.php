@@ -15,11 +15,18 @@
     })
 
 
-    
+    var selectedCurr = [];
     function showRate(e, num){
+        var prevValue = []
+
+        prevValue.push(e.value);
+        selectedCurr.push(e.value);
+        console.log(prevValue);
+        console.log(selectedCurr);
+
+
         var rate = Number(e.value.slice(4));  
-        console.log(rate);
-        console.log(num);
+        console.log("SHOW RATE RATE : "+rate);
         $("#ratesummary"+num).text(rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         $("#rate"+num).val(rate);
 
@@ -29,6 +36,7 @@
             var amount = rate * $("#lembar"+num).val();
             $("#amountsummary"+num).text(amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
+
 
         // var rate = 0;
         // var lembar;
@@ -51,7 +59,7 @@
     function lembarCalc(e, num){
         var lembar = Number(e.value);
         var rate = Number($("#rate"+num).val());
-        console.log(rate);
+        console.log("LEMBAR DI RATE : "+rate);
         $("#amountsummary"+num).text((rate * lembar).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     }
 
@@ -70,10 +78,13 @@
         $("#tambahcurrency").click(function(e) {
             e.preventDefault();
             tap++;
+            console.log(tap);
             $('.wrapper-currency').append(`
                 <div class="row">
                     <hr>
-                    <i class="removecurrency ti ti-square-x  text-danger text-end align-self-end" id="removecurrency" style="font-size: 26px; cursor: pointer;"></i>
+                    <div class="col-12 d-flex justify-content-end">
+                        <i class="removecurrency ti ti-square-x  text-danger text-end" id="removecurrency" style="font-size: 26px; cursor: pointer;"></i>
+                    </div>
                     <div class="col-6 my-4">
                         <div class="mb-3">
                             <input type="hidden" name="rate[]" id="rate${tap}">
@@ -129,7 +140,7 @@
 
         $(".wrapper-currency").on("click", ".removecurrency", function(e) {
             e.preventDefault();
-            $(this).parent('div').remove();
+            $(this).parent().parent().remove();
             tap--;
         })
     })

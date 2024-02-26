@@ -51,10 +51,15 @@ class Auth extends CI_Controller
 			return;
 		}
 
+		$url = URLAPI . "/v1/user/get_byusername?username=".$result->username;
+		$user = expatAPI($url)->result->messages;
+
 		
 		$temp_session = array(
 			'username'  => $result->username,
 			'role'      => $result->role,
+			'kontak'	=> $user->kontak,
+			'kecamatan'	=> $user->kecamatan,	
 			'cabang'	=> $result->cabang,
 			'idcabang'	=> $result->cabang_id,
 			'is_login'  => true

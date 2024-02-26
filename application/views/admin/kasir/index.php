@@ -23,7 +23,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php } ?>
-                    <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline"><?= $_SESSION['logged_user']['cabang']?></span></h5>
+                    <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline text-uppercase"><?= $_SESSION['logged_user']['cabang']?></span></h5>
                     <form action="<?= base_url()?>transaksi/transaksi_process" method="POST">
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                         <div class="row pt-2 mb-5">
@@ -80,7 +80,7 @@
                                                         $dt->currency == 'RMB' || $dt->currency == 'EUR' || $dt->currency == 'JPY'  
                                                     ){  
                                                 ?>
-                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
+                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>" ><?= $dt->currency?></option>                                                                    
                                                 <?php 
                                                     }
                                                 }?>
@@ -117,54 +117,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- <div class="row">
-                                    <hr>
-                                    <div class="col-6 my-4">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Currency</label>
-                                            <select name="currency[]" id="currency" class="form-select select-currency-withdraw">
-                                                <option value="">--Select Currency--</option>  
-                                                <?php foreach($currency as $dt){
-                                                    if(
-                                                        $dt->currency == 'USD' || $dt->currency == 'AUD' || $dt->currency == 'GBP' ||
-                                                        $dt->currency == 'RMB' || $dt->currency == 'EUR' || $dt->currency == 'JPY'  
-                                                    ){  
-                                                ?>
-                                                    <option value="<?= $dt->currency?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
-                                                <?php 
-                                                    }
-                                                }?>
-        
-                                                <?php foreach($currency as $dt){
-                                                    if(
-                                                        $dt->currency != 'USD' && $dt->currency != 'AUD' && $dt->currency != 'GBP' &&
-                                                        $dt->currency != 'RMB' && $dt->currency != 'EUR' && $dt->currency != 'JPY'  
-                                                    ){  
-                                                ?>
-                                                    <option value="<?= $dt->currency?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
-                                                <?php 
-                                                    }
-                                                }?>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="lembar" class="form-label">Lembar</label>
-                                            <input type="number" class="form-control" id="lembar" name="lembar[]" placeholder="Masukkan jumlah lembar..." required autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <div class="mb-3 pt-1 d-flex flex-column justify-content-center align-items-center">
-                                            <div>
-                                                <h6 class="text-center">Rate:</h6>
-                                                <h4 class="text-center">Rp. <span id="ratesummary" class="money-input">0</span></h4>
-                                            </div>
-                                            <div class="pt-4">
-                                                <h6 class="text-center">Total Amount:</h6>
-                                                <h3 class="text-center">Rp. <span id="amountsummary" class="money-input">0</span></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                         
@@ -180,4 +132,23 @@
 
 </div>
 <!-- MAIN CONTENT END -->
+
+<!-- SWEET ALERT START -->
+<?php if(isset($_SESSION["success"])) { ?>
+    <script>
+        setTimeout(function() {
+            Swal.fire({
+                html: '<?= $_SESSION['success'] ?>',
+                position: 'top',
+                timer: 3000,
+                showCloseButton: true,
+                showConfirmButton: false,
+                icon: 'success',
+                timer: 2000,
+                timerProgressBar: true,
+            });
+        }, 100);
+    </script>
+<?php } ?>
+<!-- SWEET ALERT END -->
 

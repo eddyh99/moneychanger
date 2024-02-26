@@ -24,6 +24,7 @@
 				}
 			},
 			{ data: 'nama' },
+			{ data: 'kecamatan' },
 			{ data: 'alamat' },
 			{ data: 'kontak' },
 			{ 

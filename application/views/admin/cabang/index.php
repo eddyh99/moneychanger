@@ -24,6 +24,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Cabang</th>
+                                <th>Kecamatan</th>
                                 <th class="th-cabang-address">Alamat</th>
                                 <th>Kontak</th>
                                 <th>Action</th>
@@ -35,6 +36,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Cabang</th>
+                                <th>Kecamatan</th>
                                 <th>Alamat</th>
                                 <th>Kontak</th>
                                 <th>Action</th>
