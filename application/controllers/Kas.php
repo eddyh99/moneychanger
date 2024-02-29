@@ -89,4 +89,42 @@ class Kas extends CI_Controller
         }
 
     }
+	
+	public function penukaran(){
+		$url = URLAPI . "/v1/cabang/get_allcabang";
+		$result = expatAPI($url)->result->messages;
+		
+		$data = array(
+            'title'             => NAMETITLE . ' - Input Penukaran Bank',
+            'content'           => 'admin/setoran/index',
+            'extra'             => 'admin/setoran/js/_js_index',
+			'cabang'			=> $result,
+            'penukaran_active'     	=> 'active',
+        );
+        $this->load->view('layout/wrapper', $data);
+	}
+	
+	public function setoranbank(){
+		$tgl		= explode("-",$this->security->xss_clean($this->input->post('tgl')));
+		$cabang_id	= $this->security->xss_clean($this->input->post('cabang'));
+		$awal       = date_format(date_create($tgl[0]),"Y-m-d");
+		$akhir      = date_format(date_create($tgl[1]),"Y-m-d");
+		
+		$url=URLAPI."/v1/laporan/getListKas?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
+        $response = expatAPI($url)->result->messages; 
+        echo json_encode($response);
+	}
+	
+	public function setoranadd(){
+		$url = URLAPI . "/v1/cabang/get_allcabang";
+		$result = expatAPI($url)->result->messages;
+		 $data = array(
+            'title'             => NAMETITLE . ' - Tambah Kas',
+            'content'           => 'admin/setoran/add_setoran',
+            'extra'             => 'admin/setoran/js/_js_setoran',
+			'cabang'			=> $result, 
+            'kas_active'     	=> 'active',
+        );
+        $this->load->view('layout/wrapper', $data);
+	}
 }

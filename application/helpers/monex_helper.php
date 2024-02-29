@@ -1,7 +1,7 @@
 <?php
 function expatAPI($url, $postData = NULL)
 {
-    $token = "4adf13f385783d126bde52d1087ff3e64c04866a";
+    $token = @sha1($_SESSION["logged_user"]["username"].$_SESSION["logged_user"]["passwd"]);
 
     $ch     = curl_init($url);
     $headers    = array(

@@ -72,6 +72,21 @@
                         </li>
                     </ul>
                 </li>
+				<li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Transaction</span>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$penukaran_active?>" href="<?= base_url()?>kas/penukaran" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-pig-money"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Penukaran Bank
+                        </span>
+                    </a>
+                </li>
                 <?php }?>
 
                 <?php if($_SESSION['logged_user']['role'] == 'kasir'){?>
@@ -108,16 +123,37 @@
                 </li>
 
 
-                <!-- <li class="sidebar-item">
-                    <a class="sidebar-link  <?= @$historytopup_active?>" href="<?= base_url()?>topup/history" aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$harian_active?>" href="<?= base_url()?>transaksi/harian" aria-expanded="false">
                        <span>
                             <i class="ti ti-history"></i>
                         </span>
                         <span class="hide-menu">
-                            Topup History
+                            Transaksi Harian
                         </span>
                     </a>
-                </li> -->
+                </li>
+				<li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$setoran_active?>" href="<?= base_url()?>laporan/penukaran" aria-expanded="false">
+                       <span>
+                            <i class="ti ti-history"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Penukaran 
+                        </span>
+                    </a>
+                </li>
+				<li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$lapkas_active?>" href="<?= base_url()?>laporan/kaskeluar" aria-expanded="false">
+                       <span>
+                            <i class="ti ti-history"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Kas Keluar
+                        </span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item mb-5 pb-5 mt-3">
                     <a class="sidebar-link" href="<?= base_url()?>auth/logout" aria-expanded="false">
                         <span>

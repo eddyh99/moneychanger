@@ -62,7 +62,8 @@ class Auth extends CI_Controller
 			'kecamatan'	=> $user->kecamatan,	
 			'cabang'	=> $result->cabang,
 			'idcabang'	=> $result->cabang_id,
-			'is_login'  => true
+			'is_login'  => true,
+			"passwd"	=> sha1($password)
 		);
 
 		$this->session->set_userdata('logged_user', $temp_session);

@@ -19,9 +19,7 @@ class Transaksi extends CI_Controller
         $url = URLAPI . "/v1/rate/get_allrate";
 		$response = expatAPI($url)->result->messages;   
 
-
-
-        $data = array(
+		$data = array(
             'title'             => NAMETITLE . ' - Kasir',
             'content'           => 'admin/kasir/index',
             'extra'             => 'admin/kasir/js/_js_index',
@@ -77,21 +75,37 @@ class Transaksi extends CI_Controller
                 } 
             }
         }
-
-
-        // $final_transaksi = array();
-        // foreach($temp_transaksi as $key=>$value){
-        //     if(!empty($final_transaksi[$value['currency']])){
-        //         $currentcurr = (array) $final_transaksi[$value['currency']]['jumlah'];
-        //         echo '<pre>'.print_r("MASUK DULU KE AUD " . $value['jumlah'],true).'</pre>';
-        //         $final_transaksi[$value['currency']]['jumlah'] = array_merge($currentcurr, (array) $value['jumlah']);
-        //     }else{
-        //         $final_transaksi[$value['currency']] = $value;
-        //     }
-        // }
-
-        // echo '<pre>'.print_r($final_transaksi,true).'</pre>';
-
+		
+		//merge jumlah untuk currency sama
+		$final_transaksi = [];
+		foreach ($temp_transaksi as $sa) {
+		  if (!isset($final_transaksi[$sa['currency']])) {
+			$final_transaksi[$sa['currency']] = 0;
+		  }
+		  $final_transaksi[$sa['currency']] += $sa['jumlah'];
+		}
+		
+		//normalize array format
+		$synth2 = [];
+		foreach ($final_transaksi as $k => $v) {
+		  $synth2[] = ['currency' => $k, 'jumlah' => $v];
+		}
+		
+		//merge with rate
+		$final=array();
+		foreach ($synth2 as $sa){
+			$temp["currency"]	=$sa["currency"];
+			$temp["jumlah"]		=$sa["jumlah"];
+			
+			foreach ($temp_transaksi as $dt){
+				if ($dt["currency"]==$sa["currency"]){
+					$temp["rate"]=$dt["rate"];
+					break;
+				}
+			}
+			
+			array_push($final,$temp);
+		}
 
         $mdata = array(
             'cabang_id'         => $_SESSION['logged_user']['idcabang'],
@@ -99,7 +113,7 @@ class Transaksi extends CI_Controller
             'alamat'            => $alamat,
             'passpor'           => $passpor,
             'nasionality'       => $country,
-            "detail"            => $temp_transaksi
+            "detail"            => $final
         );
 
 
@@ -130,4 +144,30 @@ class Transaksi extends CI_Controller
         // echo '<pre>'.print_r($_SESSION['print_transaksi'],true).'</pre>';
         // die;
     }
+	
+	public function harian(){
+		$url = URLAPI . "/v1/cabang/get_allcabang";
+		$result = expatAPI($url)->result->messages;
+		
+		$data = array(
+            'title'             => NAMETITLE . ' - Laporan Harian',
+            'content'           => 'admin/laporan/harian',
+            'extra'             => 'admin/laporan/js/_js_harian',
+			'cabang'			=> $result,
+            'harian_active'     => 'active',
+        );
+        $this->load->view('layout/wrapper', $data);
+	}
+	
+	public function historyharian(){
+		$tgl		= explode("-",$this->security->xss_clean($this->input->post('tgl')));
+		$cabang_id	= $this->security->xss_clean($this->input->post('cabang'));
+		$awal       = date_format(date_create($tgl[0]),"Y-m-d");
+		$akhir      = date_format(date_create($tgl[1]),"Y-m-d");
+		
+		$url=URLAPI."/v1/laporan/getListTransaction?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
+        $response = expatAPI($url)->result->messages; 
+        echo json_encode($response);
+
+	}
 }
