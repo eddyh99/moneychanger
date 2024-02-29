@@ -18,7 +18,8 @@ class Transaksi extends CI_Controller
 
         $url = URLAPI . "/v1/rate/get_allrate";
 		$response = expatAPI($url)->result->messages;   
-
+        // print_r(json_encode($response));
+        // die;
 		$data = array(
             'title'             => NAMETITLE . ' - Kasir',
             'content'           => 'admin/kasir/index',
@@ -36,6 +37,7 @@ class Transaksi extends CI_Controller
 		$this->form_validation->set_rules('alamat', 'Alamat Customer', 'trim|required');
 		$this->form_validation->set_rules('country', 'Negara Customer', 'trim|required');
 		$this->form_validation->set_rules('passpor', 'Passpor Customer', 'trim|required');
+		$this->form_validation->set_rules('jenistransaksi', 'Jenis Transaksi', 'trim|required');
 		$this->form_validation->set_rules('currency[]', 'Currency', 'trim|required');
 		$this->form_validation->set_rules('lembar[]', 'Lembar', 'trim|required');
 		$this->form_validation->set_rules('rate[]', 'Rate', 'trim|required');
@@ -50,6 +52,7 @@ class Transaksi extends CI_Controller
         $customer       = $this->security->xss_clean($this->input->post("customer"));
         $alamat         = $this->security->xss_clean($this->input->post("alamat"));
         $country        = $this->security->xss_clean($this->input->post("country"));
+        $jenis          = $this->security->xss_clean($this->input->post("jenistransaksi"));
         $passpor        = $this->security->xss_clean($this->input->post("passpor"));
         $currency       = $this->security->xss_clean($this->input->post("currency"));
         $lembar         = $this->security->xss_clean($this->input->post("lembar"));
@@ -113,12 +116,10 @@ class Transaksi extends CI_Controller
             'alamat'            => $alamat,
             'passpor'           => $passpor,
             'nasionality'       => $country,
+            'jenis'             => $jenis,
             "detail"            => $final
         );
 
-
-        // echo '<pre>'.print_r($mdata,true).'</pre>';
-        // die;
             
         $url = URLAPI . "/v1/transaksi/addTransaksi";
 		$response = expatAPI($url, json_encode($mdata));

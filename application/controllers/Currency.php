@@ -21,7 +21,7 @@ class Currency extends CI_Controller
             'extra'             => 'admin/promotion/js/_js_index',
             'master_active'     => 'active',
             'master_in'         => 'in',
-            'dropdown_promotion' => 'text-expat-green'
+            'dropdown_promotion' => 'text-monex-blue'
         );
         $this->load->view('layout/wrapper', $data);
 
@@ -35,7 +35,7 @@ class Currency extends CI_Controller
             'extra'             => 'admin/currency/js/_js_index',
             'master_active'     => 'active',
             'master_in'         => 'in',
-            'dropdown_currency' => 'text-expat-green'
+            'dropdown_rate' => 'text-monex-blue'
         );
         $this->load->view('layout/wrapper', $data);
     }
@@ -55,7 +55,7 @@ class Currency extends CI_Controller
             'extra'             => 'admin/currency/js/_js_index',
             'master_active'     => 'active',
             'master_in'         => 'in',
-            'dropdown_currency' => 'text-expat-green'
+            'dropdown_rate' => 'text-monex-blue'
         );
         $this->load->view('layout/wrapper', $data);
     }
@@ -66,8 +66,13 @@ class Currency extends CI_Controller
         $rate = preg_replace('/,(?=[\d,]*\.\d{2}\b)/', '', $prevrate);
         $_POST["rate"]=$rate;
 
+        $prevrate_j = $this->input->post("rate_j");
+        $rate_j = preg_replace('/,(?=[\d,]*\.\d{2}\b)/', '', $prevrate_j);
+        $_POST["rate_j"]=$rate_j;
+
 		$this->form_validation->set_rules('currency', 'Currency', 'trim|required');
-		$this->form_validation->set_rules('rate', 'Rate Currency', 'trim|required');
+		$this->form_validation->set_rules('rate', 'Buy Rate Currency', 'trim|required');
+		$this->form_validation->set_rules('rate_j', 'Sell Rate Currency', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('error_validation', $this->message->error_msg(validation_errors()));
@@ -79,10 +84,12 @@ class Currency extends CI_Controller
         $input      = $this->input;
         $currency   = $this->security->xss_clean($this->input->post("currency"));
         $rate       = $this->security->xss_clean($this->input->post("rate"));
+        $rate_j       = $this->security->xss_clean($this->input->post("rate_j"));
 
         $mdata = array(
             "currency"  => $currency,
             "rate"      => $rate,
+            "rate_j"      => $rate_j,
         );
 
         $url = URLAPI . "/v1/rate/addRate";
@@ -109,7 +116,6 @@ class Currency extends CI_Controller
         $url = URLAPI . "/v1/rate/getrate_bycurrency?cur=".$prevcurrency;
 		$result = expatAPI($url)->result->messages;
 
-
         $data = array(
             'title'             => NAMETITLE . ' - Edit Rate Currency',
             'content'           => 'admin/currency/edit_ratecurrency',
@@ -117,7 +123,7 @@ class Currency extends CI_Controller
             'result'          => $result,
             'master_active'     => 'active',
             'master_in'         => 'in',
-            'dropdown_currency' => 'text-monex-blue'
+            'dropdown_rate' => 'text-monex-blue'
         );
 
         $this->load->view('layout/wrapper', $data);
@@ -129,28 +135,36 @@ class Currency extends CI_Controller
         $rate = preg_replace('/,(?=[\d,]*\.\d{2}\b)/', '', $prevrate);
         $_POST["rate"]=$rate;
 
-		$this->form_validation->set_rules('currency', 'Currency', 'trim|required');
-		$this->form_validation->set_rules('rate', 'Rate Currency', 'trim|required');
+        
+        $prevrate_j = $this->input->post("rate_j");
+        $rate_j = preg_replace('/,(?=[\d,]*\.\d{2}\b)/', '', $prevrate_j);
+        $_POST["rate_j"]=$rate_j;
+
+        $input      = $this->input;
+        $currency   = $this->security->xss_clean($this->input->post("currency"));
+
+		$this->form_validation->set_rules('currency', 'Currency', 'trim');
+		$this->form_validation->set_rules('rate', 'Buy Rate Currency', 'trim|required');
+		$this->form_validation->set_rules('rate_j', 'Sell Rate Currency', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('error_validation', $this->message->error_msg(validation_errors()));
-			redirect("currency/add_ratecurrency");
+			redirect("currency/edit_ratecurrency/".base64_encode($currency));
 			return;
 		}
 
-        
-        $input      = $this->input;
-        $currency   = $this->security->xss_clean($this->input->post("currency"));
         $rate       = $this->security->xss_clean($this->input->post("rate"));
+        $rate_j     = $this->security->xss_clean($this->input->post("rate_j"));
 
         $mdata = array(
             "rate"      => $rate,
+            "rate_j"      => $rate_j,
         );
-
     
         $url = URLAPI . "/v1/rate/updateRate?cur=".$currency;
 		$response = expatAPI($url, json_encode($mdata));
         $result = $response->result;
+
 
         if($response->status == 200) {
             $this->session->set_flashdata('success', $result->messages);
@@ -158,7 +172,7 @@ class Currency extends CI_Controller
 			return;
         }else{
             $this->session->set_flashdata('error', $result->messages->error);
-			redirect('currency/edit_ratecurrency');
+			redirect('currency/edit_ratecurrency/'.base64_encode($currency));
 			return;
         }
 

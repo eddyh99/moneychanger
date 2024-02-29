@@ -75,8 +75,12 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="rate" class="form-label">Rate</label>
-                            <input type="text" class="form-control money-input" value="" id="rate" name="rate" placeholder="Masukkan rate currency..." required autocomplete="off">
+                            <label for="rate" class="form-label">Buy</label>
+                            <input type="text" class="form-control money-input" id="rate" name="rate" placeholder="Masukkan rate Buy ..." required autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rate_j" class="form-label">Sell</label>
+                            <input type="text" class="form-control money-input" id="rate_j" name="rate_j" placeholder="Masukkan rate Sell ..." required autocomplete="off">
                         </div>
                         <button type="submit" class="btn btn-expat mt-3">Simpan Rate</button>
                   </form>

@@ -5,6 +5,30 @@
 
 
 <script>
+    $(window).on('load', function() {
+        $('#jenisTransaksi').modal('show');
+    });
+
+    var jenis;
+    $('input[name=jenis]:radio').change(function() {  
+        if($(this).val() == "beli"){   
+            $('#labelbeli').addClass('bg-monex').addClass('text-white');
+            $('#labeljual').removeClass('bg-monex').removeClass('text-white');
+            $('.preview-jenis-transaksi').text('Buy');
+            $('#jenistransaksi').val('beli')
+            jenis = 'beli';
+        }
+        else if($(this).val() == "jual"){
+            $('#labelbeli').removeClass('bg-monex').removeClass('text-white');
+            $('#labeljual').addClass('bg-monex').addClass('text-white');
+            $('.preview-jenis-transaksi').text('Sell');
+            $('#jenistransaksi').val('jual');
+            jenis = 'jual';
+        }
+
+    });
+
+
     $(document).ready(function() {
         $('.country-select2').select2({
             placeholder: "Pilih Username",
@@ -15,18 +39,16 @@
     })
 
 
-    var selectedCurr = [];
     function showRate(e, num){
-        var prevValue = []
-
-        prevValue.push(e.value);
-        selectedCurr.push(e.value);
-        console.log(prevValue);
-        console.log(selectedCurr);
 
 
-        var rate = Number(e.value.slice(4));  
-        console.log("SHOW RATE RATE : "+rate);
+        var rate; 
+        if(jenis == 'jual'){
+            rate = Number($(e).find(':selected').attr('data-ratejual'))
+        }else{
+            rate = Number($(e).find(':selected').attr('data-rate'))
+        }
+
         $("#ratesummary"+num).text(rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         $("#rate"+num).val(rate);
 
@@ -59,7 +81,6 @@
     function lembarCalc(e, num){
         var lembar = Number(e.value);
         var rate = Number($("#rate"+num).val());
-        console.log("LEMBAR DI RATE : "+rate);
         $("#amountsummary"+num).text((rate * lembar).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     }
 
@@ -97,7 +118,7 @@
                                         $dt->currency == 'RMB' || $dt->currency == 'EUR' || $dt->currency == 'JPY'  
                                     ){  
                                 ?>
-                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
+                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
                                 <?php 
                                     }
                                 }?>
@@ -108,7 +129,7 @@
                                         $dt->currency != 'RMB' && $dt->currency != 'EUR' && $dt->currency != 'JPY'  
                                     ){  
                                 ?>
-                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
+                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
                                 <?php 
                                     }
                                 }?>
