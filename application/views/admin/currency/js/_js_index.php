@@ -50,4 +50,13 @@
         $('.editselect-currency').prop('disabled', false);
     });
 
+	$('.select-currency').select2({
+		placeholder: "Guest Name",
+		tags: true,
+		selectOnClose: true,
+		allowClear: true,
+		theme: "bootstrap"
+	});
+
+
 </script>

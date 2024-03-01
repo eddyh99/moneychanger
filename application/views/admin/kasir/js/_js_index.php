@@ -136,19 +136,18 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="lembar" class="form-label">Lembar</label>
-                            <input type="number" class="form-control" id="lembar${tap}" onblur="lembarCalc(this, ${tap})" name="lembar[]" placeholder="Masukkan jumlah lembar..." required autocomplete="off">
+                            <label for="lembar" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="lembar${tap}" onblur="lembarCalc(this, ${tap})" name="lembar[]" placeholder="Masukkan amount..." required autocomplete="off">
                         </div>
                     </div>
                     <div class="col-6 my-4">
                         <div class="mb-3 pt-1 d-flex flex-column justify-content-center align-items-center">
-                        
                             <div>
-                                <h6 class="text-center">Rate:</h6>
+                                <h6 class="text-center">Rate IDR:</h6>
                                 <h4 class="text-center">Rp. <span id="ratesummary${tap}" class="money-input">0</span></h4>
                             </div>
                             <div class="pt-4">
-                                <h6 class="text-center">Total Amount:</h6>
+                                <h6 class="text-center">Total Amount IDR:</h6>
                                 <h3 class="text-center">Rp. <span id="amountsummary${tap}" class="money-input">0</span></h3>
                             </div>
                         </div>

@@ -29,8 +29,8 @@
 					<table id="table_data" class="mt-3 table table-striped nowrap" width="100%">
 						<thead>
 							<tr>
+								<!-- <th>Tanggal</th> -->
 								<th>Cabang</th>
-								<th>Tanggal</th>
 								<th>Currency</th>
 								<th>Jumlah</th>
 							</tr>
@@ -39,10 +39,10 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th></th>
-								<th></th>
+								<!-- <th></th> -->
 								<th></th>
 								<th>Total</th>
+								<th></th>
 							</tr>
 						</tfoot>
 					</table>

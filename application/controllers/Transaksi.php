@@ -120,7 +120,7 @@ class Transaksi extends CI_Controller
             "detail"            => $final
         );
 
-            
+
         $url = URLAPI . "/v1/transaksi/addTransaksi";
 		$response = expatAPI($url, json_encode($mdata));
         $result = $response->result;
@@ -139,11 +139,7 @@ class Transaksi extends CI_Controller
 
     public function print_trasaksi()
     {
-        // echo '<pre>'.print_r($_SESSION,true).'</pre>';
         $this->load->view('admin/kasir/print');
-        // redirect('transaksi');
-        // echo '<pre>'.print_r($_SESSION['print_transaksi'],true).'</pre>';
-        // die;
     }
 	
 	public function harian(){
@@ -155,7 +151,7 @@ class Transaksi extends CI_Controller
             'content'           => 'admin/laporan/harian',
             'extra'             => 'admin/laporan/js/_js_harian',
 			'cabang'			=> $result,
-            'harian_active'     => 'active',
+            'transaksi_harian_active'     => 'active',
         );
         $this->load->view('layout/wrapper', $data);
 	}

@@ -40,7 +40,7 @@ var table;
 				"url": "<?=base_url()?>laporan/historykas",
 				"type": "POST",
 				"data": {
-				    tgl     : function(){console.log($("#tgl").val()); return $("#tgl").val()},
+				    tgl     : function(){return $("#tgl").val()},
 				    cabang 	: function(){return $("#cabang").val()}
 				},
 				"dataSrc":function (data){
@@ -56,7 +56,11 @@ var table;
     		},		
             "columns": [
 				  { "data": "cabang"},
-                  { "data": "tanggal" },
+                  { 
+					data: null, "mRender": function(data, type, full, meta) {
+						return full.tanggal.split("-").reverse().join("-");
+					} 
+				  },
                   { "data": "keterangan" },
                   { "data": "nominal","render":$.fn.dataTable.render.number( ',', '.', 0, '' ),"className": 'dt-right'  },
 			]

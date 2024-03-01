@@ -27,7 +27,7 @@
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                         <div class="mb-3">
                             <label for="name" class="form-label">Currency</label>
-                            <select name="currency" class="form-select select-currency-withdraw">
+                            <select name="currency" class="form-select select-currency">
                                 <option value="ARS">ARS</option>                                    
                                 <option value="AED">AED</option>
                                 <option value="AUD">AUD</option>

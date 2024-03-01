@@ -9,18 +9,18 @@
 		<div class="col-3">
 			<?php 
 			if ($_SESSION["logged_user"]["role"]=="kasir"){?>
-			<input type="hidden" name="cabang" id="cabang" value="<?=$_SESSION["logged_user"]["idcabang"]?>">
+				<input type="hidden" name="cabang" id="cabang" value="<?=$_SESSION["logged_user"]["idcabang"]?>">
 			<?php }else{?>
-			<select id="cabang" class="form-select" name="cabang">
-				<option value="all">Semua Cabang</option>
-				<?php
-				foreach ($cabang as $dt){
-				?>
-				<option value="<?=$dt->id?>"><?=$dt->nama?></option>
-				<?php  
-					}
-				?>
-			</select>
+				<select id="cabang" class="form-select" name="cabang">
+					<option value="all">Semua Cabang</option>
+					<?php
+					foreach ($cabang as $dt){
+					?>
+						<option value="<?=$dt->id?>"><?=$dt->nama?></option>
+					<?php  
+						}
+					?>
+				</select>
 			<?php }?>
 		</div>
 		<div class="col"><button id="lihat" class="btn btn-primary">Lihat</button></div>

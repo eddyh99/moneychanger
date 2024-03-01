@@ -60,7 +60,11 @@ var table;
     		},		
             "columns": [
 				  { "data": "invoice_id"},
-                  { "data": "tanggal" },
+                  { 
+					data: null, "mRender": function(data, type, full, meta) {
+						return full.tanggal.slice(0, 10).split("-").reverse().join("-");
+					} 
+				  },
                   { "data": "nama" },
                   { "data": "nasionality" },
                   { "data": "total","render":$.fn.dataTable.render.number( ',', '.', 0, '' ),"className": 'dt-right'  },

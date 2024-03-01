@@ -124,9 +124,19 @@
 
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link  <?= @$harian_active?>" href="<?= base_url()?>transaksi/harian" aria-expanded="false">
+                    <a class="sidebar-link  <?= @$rekapharian_active?>" href="<?= base_url()?>laporan/harian" aria-expanded="false">
                        <span>
-                            <i class="ti ti-history"></i>
+                            <i class="ti ti-report"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Rekap Harian
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$transaksi_harian_active?>" href="<?= base_url()?>transaksi/harian" aria-expanded="false">
+                       <span>
+                            <i class="ti ti-report-money"></i>
                         </span>
                         <span class="hide-menu">
                             Transaksi Harian
@@ -146,7 +156,7 @@
 				<li class="sidebar-item">
                     <a class="sidebar-link  <?= @$lapkas_active?>" href="<?= base_url()?>laporan/kaskeluar" aria-expanded="false">
                        <span>
-                            <i class="ti ti-history"></i>
+                            <i class="ti ti-zoom-out-area"></i>
                         </span>
                         <span class="hide-menu">
                             Kas Keluar
