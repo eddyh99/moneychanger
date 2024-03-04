@@ -71,11 +71,13 @@ class Laporan extends CI_Controller
 	public function harian()
 	{
 
+
 		$tgl		= $this->security->xss_clean($this->input->post('tgl'));
 		$cabang_id	= $this->security->xss_clean($this->input->post('cabang'));
 
 		
 		if(!empty($tgl) || !empty($cabang_id)){
+
 			$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?tanggal=".$tgl."&cabang_id=".$cabang_id;
 			$resultSaldoPenukaran = expatAPI($urlSaldoPenukaran)->result->messages;
 	
@@ -89,13 +91,14 @@ class Laporan extends CI_Controller
 			$resultCabang = expatAPI($urlCabang)->result->messages;
 			
 		}else{
-			$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?tanggal=".date('Y-m-d')."&cabang_id=1";
+			$tgl = date('Y-m-d');
+			$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?tanggal=".$tgl."&cabang_id=1";
 			$resultSaldoPenukaran = expatAPI($urlSaldoPenukaran)->result->messages;
 	
-			$urlPendapatanTransaksi = URLAPI . "/v1/laporan/getEarnToday?tanggal=".date('Y-m-d')."&cabang_id=1";
+			$urlPendapatanTransaksi = URLAPI . "/v1/laporan/getEarnToday?tanggal=".$tgl."&cabang_id=1";
 			$resultPendapatan = expatAPI($urlPendapatanTransaksi)->result->messages;
 	
-			$urlKas = URLAPI . "/v1/laporan/get_kasbydate?tanggal=".date('Y-m-d')."&cabang_id=1";
+			$urlKas = URLAPI . "/v1/laporan/get_kasbydate?tanggal=".$tgl."&cabang_id=1";
 			$resultKas = expatAPI($urlKas)->result->messages;
 	
 			$urlCabang = URLAPI . "/v1/cabang/get_allcabang";
@@ -110,6 +113,7 @@ class Laporan extends CI_Controller
 			'saldo'				=> $resultSaldoPenukaran,
 			'pendapatan'		=> $resultPendapatan,
 			'kas'				=> $resultKas,
+			'tgl'				=> $tgl,
 			'rekapharian_active'  => 'active',
 		);
 		$this->load->view('layout/wrapper', $data);

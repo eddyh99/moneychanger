@@ -5,7 +5,7 @@
             <div class="row my-4">
             <label class="col-form-label col-1">Tanggal</label>
             <div class="col-3">
-                <input type="text" id="tgl" name="tgl" class="form-control" value="<?= date('Y-m-d')?>" autocomplete="off">
+                <input type="text" id="tgl" name="tgl" class="form-control" value="<?= $tgl?>" autocomplete="off">
             </div>
             <div class="col-3">
                 <?php 
@@ -43,7 +43,7 @@
                                 Tanggal :
                             </h5>
                             <h5 class="fw-bolder">
-                                <?= date('d-m-Y')?>
+                                <?= date_format(date_create($tgl), 'd-m-Y')?>
                             </h5>
                         </div>
                     </div>

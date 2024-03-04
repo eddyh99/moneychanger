@@ -177,4 +177,23 @@ class Currency extends CI_Controller
         }
 
     }
+
+
+    public function show_rate()
+    {
+
+        $url = URLAPI . "/v1/rate/get_allrate";
+		$result = expatAPI($url)->result->messages;  
+        
+        // echo '<pre>'.print_r($result,true).'</pre>';
+        // die;
+
+        $mdata = array(
+            'title'         => NAMETITLE . ' - Show Rate',
+            'extra'         => 'admin/currency/js/_js_show_rate',
+            'rate'          => $result,
+        );
+
+        $this->load->view('admin/currency/show_rate', $mdata);
+    }
 }
