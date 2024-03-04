@@ -34,10 +34,10 @@ var groupColumn = 1;
 var table;
 	table = $('#table_data').DataTable({
 			"order": [[ 0, "asc" ]],
-			"columnDefs": [{
-				visible: false,
-				targets: groupColumn
-			}],
+			// "columnDefs": [{
+			// 	visible: false,
+			// 	targets: groupColumn
+			// }],
             "pageLength": 50,
             "dom": 'Bfrtip',
             "buttons": [
@@ -57,28 +57,30 @@ var table;
 			},
 			"drawCallback": function () {
     			var api = this.api();			
-				var rows = api.rows({filter:'applied'}).nodes();
-				var last = null;
+				var jumlah = api.column( 2, {filter:'applied'} ).data().sum();
+				$( api.column( 2 ).footer() ).html(jumlah);
 
-				api.column(groupColumn, {filter:'applied'})
-					.data()
-					.each(function (group, i) {
-						if (last !== group) {
-							$(rows)
-								.eq(i)
-								.before(
-									'<tr class="group"><td colspan="5"><strong>' +
-										group +
-										'</strong></td></tr>'
-								);
+				// var last = null;
 
-							last = group;
-						}
-					});				
+				// api.column(groupColumn, {filter:'applied'})
+				// 	.data()
+				// 	.each(function (group, i) {
+				// 		if (last !== group) {
+				// 			$(rows)
+				// 				.eq(i)
+				// 				.before(
+				// 					'<tr class="group"><td colspan="3"><strong>' +
+				// 						group +
+				// 						'</strong></td></tr>'
+				// 				);
+
+				// 			last = group;
+				// 		}
+				// 	});				
     		},		
             "columns": [
-				  { "data": "cabang"},
-				  { "data": "tanggal"},
+				{ "data": "cabang"},
+				//   { "data": "tanggal"},
 				  { "data": "currency"},
                   { "data": "jumlah","render":$.fn.dataTable.render.number( ',', '.', 0, '' ),"className": 'dt-right' },
 			]

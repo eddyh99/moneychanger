@@ -34,7 +34,7 @@
                             <select name="jenis" id="jenis" class="form-select">
                                 <option value="Kas Awal">Kas Awal</option>
                                 <option value="Kas Keluar">Kas Keluar</option>
-                                <option value="Sisa">Sisa</option>
+                                <option value="Kas Masuk">Kas Masuk</option>
                             </select>
                         </div>
                         <div class="mb-3">

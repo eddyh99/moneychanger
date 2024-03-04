@@ -18,6 +18,7 @@
 			"url": "<?=base_url()?>currency/list_allrate",
 			"type": "POST",
 			"dataSrc":function (data){
+				console.log(data);
 				return data;							
 			}
 		},
@@ -30,6 +31,7 @@
 			},
 			{ data: 'currency' },
 			{data: 'rate', render: $.fn.dataTable.render.number(',', '.', 2) },
+			{data: 'rate_j', render: $.fn.dataTable.render.number(',', '.', 2) },
 			{ 
                 data: null, "mRender": function(data, type, full, meta) {
                     button='<a href="<?=base_url()?>currency/edit_ratecurrency/'+encodeURI(btoa(full.currency))+'" class="btn btn-success mx-1 my-1"><i class="ti ti-pencil-minus fs-4"></i></a>'
@@ -47,5 +49,14 @@
     $('#editrate').on('submit', function() {
         $('.editselect-currency').prop('disabled', false);
     });
+
+	$('.select-currency').select2({
+		placeholder: "Guest Name",
+		tags: true,
+		selectOnClose: true,
+		allowClear: true,
+		theme: "bootstrap"
+	});
+
 
 </script>

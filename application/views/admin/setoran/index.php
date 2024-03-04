@@ -3,7 +3,7 @@
     <!--  Row Daftar User -->
     <div class="row my-4">
         <div class="col-lg-12 d-flex align-items-strech">
-            <a href="<?= base_url()?>kas/setoran_add" class="btn btn-expat d-flex align-items-center">
+            <a href="<?= base_url()?>kas/add_setoran" class="btn btn-expat d-flex align-items-center">
                 <i class="ti ti-plus fs-5 me-2"></i>
                 <span>
                     Tambah Penukaran
@@ -11,6 +11,7 @@
             </a>
         </div>
     </div>
+
 	<div class="row my-4">
 		<label class="col-form-label col-1">Tanggal</label>
 		<div class="col-3">
@@ -56,24 +57,24 @@
                             </button>
                         </div>
                     </div> -->
-                    <h5 class="card-title fw-semibold mb-4">Input Penukaran Bank</h5>
-                    <table id="table_data" class="table table-striped" style="width:100%">
+                    <h5 class="card-title fw-semibold mb-4">Penukaran Bank</h5>
+                    <table id="table_penukaran_bank" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Cabang</th>
                                 <th>Tanggal</th>
-                                <th>Keterangan</th>
-                                <th>Nominal</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>No</th>
                                 <th>Cabang</th>
                                 <th>Tanggal</th>
-                                <th>Keterangan</th>
-                                <th>Nominal</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -83,6 +84,42 @@
     </div>
 </div>
 <!-- MAIN CONTENT END -->
+<div id="resultmodal">
+
+</div>
+<!-- <div class="modal fade" id="updatepenukaran5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Penukaran</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-start">
+                    <form class="w-100" action="<?= base_url()?>kas/update_penukaran_process" method="POST">
+                            <?php  foreach($detail as $dt){?>
+                                
+                                <div class="mb-5">
+                                    <div class="mb-3">
+                                        <label for="currency" class="form-label">Currency</label>
+                                        <input type="text" class="form-control w-100" id="currency" name="currency" value="<?= $dt->currency?>" required autocomplete="off" readonly>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="rate" class="form-label">Rate</label>
+                                        <input type="text" class="form-control w-100 money-input" id="rate" name="rate" value="<?php echo ($dt->rate != '0.00') ? $dt->rate : '' ?>" placeholder="Masukkan rate ..." required autocomplete="off" >
+                                    </div>
+                                </div>
+                                <hr>
+                                
+                            <?php }?>
+                        <button type="submit" class="btn btn-expat mt-3">Update Penukaran</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 
 <!-- SWEET ALERT START -->
 <?php if(isset($_SESSION["success"])) { ?>

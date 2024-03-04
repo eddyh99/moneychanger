@@ -32,7 +32,10 @@
             },
 			{ data: 'jenis' },
 			{ data: 'keterangan' },
-			{ data: 'nominal' },
+			{ 
+				data: "nominal", 
+				"render":$.fn.dataTable.render.number( ',', '.', 0, '' )
+			},
 		],
 	});
 

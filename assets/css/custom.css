@@ -48,6 +48,9 @@
     color: var(--expat-text-active-sidebar) !important;
 }
 
+.bg-monex {
+    background-color: var(--expat-bg-primary);
+}
 
 
 /* .border-expat {
@@ -175,6 +178,24 @@
 
 .preview-image-container {
 border-radius: 10px;
+}
+
+.select-jenis-transaksi label {
+    padding: 15px 50px;
+    border: 1px solid var(--expat-bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.select-jenis-transaksi label input {
+    display: none;
 }
 
 

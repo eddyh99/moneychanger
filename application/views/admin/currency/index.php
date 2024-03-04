@@ -24,7 +24,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Currency</th>
-                                <th>Rate</th>
+                                <th>Buy</th>
+                                <th>Sell</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,7 +35,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Currency</th>
-                                <th>Rate</th>
+                                <th>Buy</th>
+                                <th>Sell</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

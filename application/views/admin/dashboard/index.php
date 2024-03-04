@@ -2,25 +2,9 @@
 <div class="container-fluid">
     <div class="row">
    
-        <div class="col-sm-6 col-xl-4">
-            <div class="card bg-white-subtle shadow-lg">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center">
-                        <div class="dash-preview rounded text-bg-success d-flex align-items-center justify-content-center">
-                            <i class="ti ti-checkup-list fs-12"></i>
-                        </div>
-                        <div class="ms-auto text-info d-flex align-items-center">
-                            <span class="fs-8 fw-bold text-success">10K</span>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mt-4">
-                        <h3 class="mb-0 fw-semibold fs-7">Users Active</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+  
 
-        <div class="col-sm-6 col-xl-4">
+        <!-- <div class="col-6">
             <div class="card bg-white-subtle shadow-lg">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
@@ -38,7 +22,7 @@
             </div>
         </div>
         
-        <div class="col-sm-6 col-xl-4">
+        <div class="col-sm-6">
             <div class="card bg-white-subtle shadow-lg">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
@@ -52,6 +36,21 @@
                     <div class="d-flex align-items-center justify-content-between mt-4">
                         <h3 class="mb-0 fw-semibold fs-7">Monthly Transaction</h3>
                     </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="col-6">
+            <div class="card bg-white-subtle shadow-lg">
+                <div class="card-body p-4">
+                    <div id="omzetBulananChart" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card bg-white-subtle shadow-lg">
+                <div class="card-body p-4">
+                    <div id="chartNationality" style="height: 370px; width: 100%;"></div>
                 </div>
             </div>
         </div>

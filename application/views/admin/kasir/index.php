@@ -23,9 +23,49 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php } ?>
-                    <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline text-uppercase"><?= $_SESSION['logged_user']['cabang']?></span></h5>
+
+                    <div class="modal fade" id="jenisTransaksi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="jenisTransaksiLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header d-flex align-items-center justify-content-center">
+                                    <h4 class="modal-title text-center" id="myLargeModalLabel">
+                                        Pilih Jenis Transaksi
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-flex justify-content-evenly select-jenis-transaksi">
+                                        <label id="labelbeli" for="beli" class="pilih-jenis-transaksi bg-monex text-white">
+                                            <input type="radio" name="jenis" value="beli" id="beli" checked="checked">
+                                            <span>Buy</span>
+                                        </label>
+                                        <label id="labeljual" for="jual">
+                                            <input type="radio" name="jenis" value="jual" id="jual">
+                                            <span>Sell</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-primary-subtle text-primary  waves-effect text-start" data-bs-dismiss="modal">
+                                        Simpan Jenis Transaksi
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline text-uppercase"><?= $_SESSION['logged_user']['cabang']?></span></h5>
+                        <button type="button" class="btn mb-1 d-flex justify-content-center align-items-center bg-primary-subtle text-primary px-4 fs-4 ">
+                            <i class="ti ti-info-circle fs-6  me-2"></i>
+                            <span class="preview-jenis-transaksi  fs-5">
+                                Buy
+                            </span>
+                        </button>
+                    </div>
                     <form action="<?= base_url()?>transaksi/transaksi_process" method="POST">
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                        <input type="hidden" id="jenistransaksi" name="jenistransaksi" value="beli">
                         <div class="row pt-2 mb-5">
                             <div class="col-6">
                                 <div class="mb-3">
@@ -80,7 +120,7 @@
                                                         $dt->currency == 'RMB' || $dt->currency == 'EUR' || $dt->currency == 'JPY'  
                                                     ){  
                                                 ?>
-                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>" ><?= $dt->currency?></option>                                                                    
+                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
                                                 <?php 
                                                     }
                                                 }?>
@@ -91,26 +131,26 @@
                                                         $dt->currency != 'RMB' && $dt->currency != 'EUR' && $dt->currency != 'JPY'  
                                                     ){  
                                                 ?>
-                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" rate="<?= $dt->rate?>"><?= $dt->currency?></option>                                                                    
+                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
                                                 <?php 
                                                     }
                                                 }?>
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="lembar" class="form-label">Lembar</label>
-                                            <input type="number" class="form-control" id="lembar1" onblur="lembarCalc(this, 1)" name="lembar[]" placeholder="Masukkan jumlah lembar..." required autocomplete="off">
+                                            <label for="lembar" class="form-label">Amount</label>
+                                            <input type="number" class="form-control" id="lembar1" onblur="lembarCalc(this, 1)" name="lembar[]" placeholder="Masukkan amount..." required autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-6 my-4">
                                         <div class="mb-3 pt-1 d-flex flex-column justify-content-center align-items-center">
                                          
                                             <div>
-                                                <h6 class="text-center">Rate:</h6>
+                                                <h6 class="text-center">Rate IDR:</h6>
                                                 <h4 class="text-center">Rp. <span id="ratesummary1" class="money-input">0</span></h4>
                                             </div>
                                             <div class="pt-4">
-                                                <h6 class="text-center">Total Amount:</h6>
+                                                <h6 class="text-center">Total Amount IDR:</h6>
                                                 <h3 class="text-center">Rp. <span id="amountsummary1" class="money-input">0</span></h3>
                                             </div>
                                         </div>
