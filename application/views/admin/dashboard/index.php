@@ -4,7 +4,7 @@
    
   
 
-        <div class="col-6">
+        <!-- <div class="col-6">
             <div class="card bg-white-subtle shadow-lg">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-6">
             <div class="card bg-white-subtle shadow-lg">

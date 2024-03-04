@@ -55,7 +55,7 @@ class Dashboard extends CI_Controller
         
             $tempCabang = array();
             foreach($resultNationality as $j){
-                echo '<pre>'.print_r($tempCabang,true).'</pre>';
+                // echo '<pre>'.print_r($tempCabang,true).'</pre>';
                 
                 if(($i->nasionality == $j->nasionality) && ($j->total != 0)){
                     $temp2['cabang'] = $j->cabang;
@@ -91,7 +91,7 @@ class Dashboard extends CI_Controller
 
 
         // print_r(json_encode($resultNationality));
-        echo '<pre>'.print_r($final,true).'</pre>';
+        // echo '<pre>'.print_r($final,true).'</pre>';
         // echo '<pre>'.print_r($nasionality,true).'</pre>';
         // echo '<pre>'.print_r($cabang,true).'</pre>';
         // die;
@@ -154,8 +154,8 @@ class Dashboard extends CI_Controller
         //     echo "<br>";
         // }
 
-        echo '<pre>'.print_r($finall,true).'</pre>';
-        die;
+        // echo '<pre>'.print_r($finall,true).'</pre>';
+        // die;
 
 
         $data = array(

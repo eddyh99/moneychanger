@@ -115,6 +115,16 @@
                         </span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$liverate_active?>" href="<?= base_url()?>currency/show_rate" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-chart-bar"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Live Rate
+                        </span>
+                    </a>
+                </li>
                 <?php }?>
                 
                 <li class="nav-small-cap">
