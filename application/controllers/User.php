@@ -30,7 +30,17 @@ class User extends CI_Controller
     public function list_alluser()
     {
 		$url = URLAPI . "/v1/user/get_alluser";
-		$result = expatAPI($url)->result->messages;
+		$response = expatAPI($url)->result->messages;
+        $result = array();
+        foreach($response as $dt){
+            if($dt->username != 'admin'){
+                $temp['username']   = $dt->username;
+                $temp['passwd']   = $dt->passwd;
+                $temp['nama']   = $dt->nama;
+                $temp['role']   = $dt->role;
+                array_push($result, $temp);
+            }
+        }
         echo json_encode($result);        
 
     }
