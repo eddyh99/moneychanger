@@ -22,9 +22,20 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php } ?>
-                    <h5 class="card-title fw-semibold mb-4">Tambah User</h5>
+                    <h5 class="card-title fw-semibold mb-4">Tambah Kas</h5>
                     <form action="<?= base_url()?>kas/addkas_process" method="POST">
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                        <?php if($_SESSION['logged_user']['role'] == 'admin'){?>
+                            <div class="mb-3">
+                                <label for="cabang" class="form-label">Cabang</label>
+                                <select class="cabang-select2" id="cabang" name="cabang" required>
+                                    <option value=""></option>
+                                    <?php foreach($cabang as $dt){?>
+                                        <option value="<?= $dt->id?>"><?= $dt->nama?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        <?php }?>
                         <div class="mb-3">
                             <label for="nominal" class="form-label">Nominal</label>
                             <input type="text" class="form-control money-input" id="nominal" name="nominal" placeholder="Masukkan nominal kas..." required autocomplete="off">

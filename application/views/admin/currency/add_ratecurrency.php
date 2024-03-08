@@ -33,6 +33,7 @@
                                 <option value="AUD">AUD</option>
                                 <option value="BDT">BDT</option>
                                 <option value="CAD">CAD</option>
+                                <option value="CHF">CHF</option>
                                 <option value="CLP">CLP</option>
                                 <option value="CNY">CNY</option>
                                 <option value="CZK">CZK</option>

@@ -12,11 +12,11 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
     
 </head>
-<body>
+<body class="bg-black">
     <div class="container-fluid" >
         <div class="row">
-            <h1 class="text-center pt-3  fw-bolder text-decoration-underline"><?= $_SESSION['logged_user']['cabang']?></h1>
-            <h1 class="text-center pt-3 pb-5 fw-bolder fst-italic">Authorized Money Changer</h1>
+            <h1 class="text-center pt-3  fw-bolder text-uppercase text-white"><?= $_SESSION['logged_user']['cabang']?></h1>
+            <h1 class="text-center pt-3 pb-5 fw-bolder fst-italic text-white">Authorized Money Changer</h1>
          
             <!-- Slider main container -->
             <div class="swiper">
@@ -30,8 +30,8 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -39,12 +39,19 @@
                                             foreach($slide1 as $dt){
                                         ?>
                                             <tr>
-                                                <td class="d-flex align-items-center fw-bolder">
+                                                <td class="d-flex align-items-center">
                                                     <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
-                                                <td><?= number_format(@$dt->rate_j,2,".",",")?></td>
+
+                                                <?php if($dt->rate_j == 0.00){?>
+                                                    <td>-</td>
+                                                <?php }else{?>
+                                                    <td>
+                                                        <?=  number_format(@$dt->rate_j,2,".",",") ?>    
+                                                    </td>
+                                                <?php }?>
                                             </tr>
                                         <?php 
                                             }
@@ -57,8 +64,8 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,8 +95,8 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -115,8 +122,8 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>

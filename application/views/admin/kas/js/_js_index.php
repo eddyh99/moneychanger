@@ -3,14 +3,23 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-<script>
 
-    
-    $('#table_list_kas').DataTable({
+<!-- SELECT2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script>   
+var table;
+	table = $('#table_list_kas').DataTable({
 		"scrollX": true,
 		"ajax": {
 			"url": "<?=base_url()?>kas/list_allkastoday",
 			"type": "POST",
+			"data": {
+				cabang : function(){return $("#cabang").val()},
+			},
 			"dataSrc":function (data){
 				console.log(data);
 				return data;							
@@ -39,6 +48,10 @@
 		],
 	});
 
+	$("#lihat").on("click",function(){
+	    table.ajax.reload();
+	})
+
     $('#tanggal').daterangepicker({
         startDate: moment(),
         endDate: moment(),
@@ -52,4 +65,15 @@
             'This Month': [moment().startOf('month'), moment().endOf('month')],
         }
     });
+
+
+	$(document).ready(function() {
+		$('.cabang-select2').select2({
+			placeholder: "Pilih Cabang",
+			allowClear: true,
+			theme: "bootstrap", 
+			width: "100%"
+		});
+	
+	});
 </script>

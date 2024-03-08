@@ -22,6 +22,8 @@
 	?>
 
 	<script>
+
+		
 		$(".money-input").autoNumeric('init', {
 		    aSep: ',',
 			aDec: '.',

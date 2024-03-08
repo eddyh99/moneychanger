@@ -45,19 +45,40 @@ class Auth extends CI_Controller
 		$response = expatAPI($url, json_encode($mdata));
 		$result = $response->result->messages;
 
+
 		if (@$response->status != 200) {
 			$this->session->set_flashdata('error', $result->error);
 			redirect("/");
 			return;
 		}
 
-		$url = URLAPI . "/v1/user/get_byusername?username=".$result->username;
-		$user = expatAPI($url)->result->messages;
+		if($result->cabang_id == null && $result->username != 'admin'){
+			$this->session->set_flashdata('error', 'Please assign user first');
+			redirect("/");
+			return;
+		}
 
-		
+	
 		$temp_session = array(
 			'username'  => $result->username,
 			'role'      => $result->role,
+			// 'kontak'	=> $user->kontak,
+			// 'kecamatan'	=> $user->kecamatan,	
+			'cabang'	=> $result->cabang,
+			'idcabang'	=> $result->cabang_id,
+			'is_login'  => true,
+			"passwd"	=> sha1($password)
+		);
+		
+		$this->session->set_userdata('logged_user', $temp_session);
+
+		$url = URLAPI . "/v1/user/get_byusername?username=".$result->username;
+		$user = expatAPI($url)->result->messages;
+
+		$user_session = array(
+			'username'  => $result->username,
+			'role'      => $result->role,
+			'nama'		=> $user->nama,
 			'kontak'	=> $user->kontak,
 			'kecamatan'	=> $user->kecamatan,	
 			'cabang'	=> $result->cabang,
@@ -65,8 +86,9 @@ class Auth extends CI_Controller
 			'is_login'  => true,
 			"passwd"	=> sha1($password)
 		);
+		
+		$this->session->set_userdata('logged_user', $user_session);
 
-		$this->session->set_userdata('logged_user', $temp_session);
 		$this->session->set_flashdata('success_login', "Selamat datang <b>".$result->username."</b>");
 		redirect('dashboard');
 

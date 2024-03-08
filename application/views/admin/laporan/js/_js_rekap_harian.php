@@ -2,46 +2,36 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script> -->
-<script type="text/javascript" src="<?= base_url()?>assets/libs/html2canvas/html2canvas.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/libs/html2canvas/canvg.min.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/libs/html2canvas/jspdf.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
 
 <style>
     
 </style>
 
 <script>
-    // $('#downloadpdf').on('click', function(){
-    //     window.html2canvas = html2canvas;
-    //         var doc = new jsPDF();
-    //         var pdf = document.querySelector(".card-body");
-    //         doc.fromHTML(pdf);
-    //         doc.save("<?= NAMETITLE ?>_Laporan Harian_<?= date('d-m-Y')?>.pdf");
-    // })
+    $(document).ready(function(){	
+        
+        var divHeight = $('#printthis').height();
+        var divWidth = $('#printthis').width();
 
-    // $('#downloadpdf').on('click', function(){
-    //     var pdf = new jsPDF('p','pt','a3');
-    //     var options = {
-    //         background: '#fff'        
-    //     };
-    //     pdf.addHTML(document.querySelector('.card-body'), options, function() {
-    //         pdf.save('<?= NAMETITLE ?>_Laporan Harian_<?= date('d-m-Y')?>.pdf');
-    //     });
-    // })
+        $('#downloadpdf').click(()=>{
+            html2canvas(document.querySelector('#printthis')).then((canvas) => {
+                var base64image = canvas.toDataURL('image/png');
 
-    $('#downloadpdf').click(()=>{
-        var pdf = new jsPDF('p','pt','a4');
-        var options = {
-            background: '#fff'        
-        };
-        pdf.addHTML(document.body, options, function() {
-            pdf.save('<?= NAMETITLE ?>_Laporan Harian_<?= date('d-m-Y')?>.pdf');
-        });
-    })
+                console.log(base64image);
+
+                const { height, width } = canvas;
+
+                var pdf = new jsPDF('p', 'mm',  [width * 4.332, height * 2.332]);
+
+                pdf.addImage(base64image, 'PNG', 0, 0, width, height);
+                pdf.save('<?= NAMETITLE ?>_Laporan Harian_<?= date('d-m-Y')?>.pdf'); 
+            })
+        })
 
 
-    $(document).ready(function(){		
         $( "#tgl" ).datepicker({
             dateFormat: 'yy-mm-dd',
             changeYear: true,

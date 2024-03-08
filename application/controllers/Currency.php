@@ -185,33 +185,52 @@ class Currency extends CI_Controller
         $url = URLAPI . "/v1/rate/get_allrate";
 		$result = expatAPI($url)->result->messages;  
 
+        // USD 
+
         $slide1 = array();
         $slide2 = array();
         $slide3 = array();
-        foreach($result as $key=>$val){
-            
-            if($key < 6){
-                $temp['flag'] = substr($val->currency,0,3);
-                $temp['currency'] = $val->currency;
-                $temp['rate'] = $val->rate;
-                $temp['rate_j'] = $val->rate_j;
-                array_push($slide1, (object)$temp);
-            }else if($key > 5 && $key < 12){
-                $temp['flag'] = substr($val->currency,0,3);
-                $temp['currency'] = $val->currency;
-                $temp['rate'] = $val->rate;
-                $temp['rate_j'] = $val->rate_j;
-                array_push($slide2, (object)$temp);
-            }else if($key > 11 && $key < 16){
-                $temp['flag'] = substr($val->currency,0,3);
-                $temp['currency'] = $val->currency;
-                $temp['rate'] = $val->rate;
-                $temp['rate_j'] = $val->rate_j;
-                array_push($slide3, (object)$temp);
 
+        // USD
+        foreach($result as $dt){
+            if(preg_match("/{$dt->currency}/i", 'USD 5, 10, 20 USD 1, 2 USD 50, 100')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide1, (object)$temp);
             }
         }
-        
+
+
+
+        // foreach($result as $key=>$val){
+            
+        //     if($key < 6){
+
+        //         $temp['flag'] = substr($val->currency,0,3);
+        //         $temp['currency'] = $val->currency;
+        //         $temp['rate'] = $val->rate;
+        //         $temp['rate_j'] = $val->rate_j;
+        //         array_push($slide1, (object)$temp);
+
+        //     }else if($key > 5 && $key < 12){
+        //         $temp['flag'] = substr($val->currency,0,3);
+        //         $temp['currency'] = $val->currency;
+        //         $temp['rate'] = $val->rate;
+        //         $temp['rate_j'] = $val->rate_j;
+        //         array_push($slide2, (object)$temp);
+        //     }else if($key > 11 && $key < 16){
+        //         $temp['flag'] = substr($val->currency,0,3);
+        //         $temp['currency'] = $val->currency;
+        //         $temp['rate'] = $val->rate;
+        //         $temp['rate_j'] = $val->rate_j;
+        //         array_push($slide3, (object)$temp);
+        //     }
+        // }
+        // echo '<pre>'.print_r($result,true).'</pre>';
+        // echo '<pre>'.print_r($slide1,true).'</pre>';
+        // die;
 
         $mdata = array(
             'title'         => NAMETITLE . ' - Show Rate',

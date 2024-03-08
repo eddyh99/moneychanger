@@ -4,13 +4,21 @@
     }
     thead {
         border-bottom: 5px solid  #000;
-        background-color: #7FC7D9;
-        color: #000;
+        background-color: #387ADF;
+        color: #fff;
+    }
+
+    tbody{
+        background-color: #fff;
     }
 
     th, td {
         font-size: 35px;
         padding: 20px 50px;
+    }
+
+    tr td {
+        font-weight: 800;
     }
 
     tr:nth-child(even) {
