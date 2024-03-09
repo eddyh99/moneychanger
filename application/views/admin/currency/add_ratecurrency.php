@@ -56,6 +56,7 @@
                                 <option value="MXN">MXN</option>
                                 <option value="MYR">MYR</option>
                                 <option value="NGN">NGN</option>
+                                <option value="NZD">NZD</option>
                                 <option value="NOK">NOK</option>
                                 <option value="NPR">NPR</option>
                                 <option value="PEN">PEN</option>
@@ -63,6 +64,7 @@
                                 <option value="PKR">PKR</option>
                                 <option value="PLN">PLN</option>
                                 <option value="RON">RON</option>
+                                <option value="SAR">SAR</option>
                                 <option value="SEK">SEK</option>
                                 <option value="SGD">SGD</option>
                                 <option value="THB">THB</option>

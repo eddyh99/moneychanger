@@ -185,11 +185,11 @@ class Currency extends CI_Controller
         $url = URLAPI . "/v1/rate/get_allrate";
 		$result = expatAPI($url)->result->messages;  
 
-        // USD 
-
         $slide1 = array();
         $slide2 = array();
         $slide3 = array();
+        $slide4 = array();
+        $slide_last = array();
 
         // USD
         foreach($result as $dt){
@@ -201,7 +201,74 @@ class Currency extends CI_Controller
                 array_push($slide1, (object)$temp);
             }
         }
+  
+        // AUD EUR GBP
+        foreach($result as $dt){
+            if(preg_match("/{$dt->currency}/i", 'AUD EUR GBP')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide1, (object)$temp);
+            }
+        }
 
+        // CHF JPY
+        foreach($result as $dt){
+            if(preg_match("/{$dt->currency}/i", 'CHF JPY ')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide2, (object)$temp);
+            }
+        }
+
+        // CAD MYR NZD SGD
+        foreach($result as $dt){
+            if(preg_match("/{$dt->currency}/i", 'CAD MYR  NZD SGD ')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide2, (object)$temp);
+            }
+        }
+
+        // HKD KRW AED SAR CNY THB
+        foreach($result as $dt){
+            if(preg_match("/{$dt->currency}/i", 'HKD KRW AED SAR CNY THB')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide3, (object)$temp);
+            }
+        }
+
+        // HKD KRW AED SAR CNY THB
+        foreach($result as $dt){
+            if(preg_match("/{$dt->currency}/i", 'PHP INR ARS')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide4, (object)$temp);
+            } else if(!preg_match("/{$dt->currency}/i", 'USD 5, 10, 20 USD 1, 2 USD 50, 100 AUD EUR GBP CHF JPY CAD MYR  NZD SGD HKD KRW AED SAR CNY THB PHP INR ARS')){
+                $temp['flag'] = substr($dt->currency,0,3);
+                $temp['currency'] = $dt->currency;
+                $temp['rate'] = $dt->rate;
+                $temp['rate_j'] = $dt->rate_j;
+                array_push($slide_last, (object)$temp);
+            }
+        }
+
+        $final_curr = array_merge(@$slide1, @$slide2, @$slide3, @$slide4);
+
+
+
+        // echo '<pre>'.print_r($final_curr,true).'</pre>';
+        // die;
 
 
         // foreach($result as $key=>$val){
@@ -236,8 +303,8 @@ class Currency extends CI_Controller
             'title'         => NAMETITLE . ' - Show Rate',
             'extra'         => 'admin/currency/js/_js_show_rate',
             'rate'          => $result,
-            'slide1'        => $slide1,
-            'slide2'        => $slide2,
+            'final'         => $final_curr,
+            'final_last'    => $slide_last,
             'liverate_active' => 'active',
 
         );
