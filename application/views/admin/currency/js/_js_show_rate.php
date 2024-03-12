@@ -34,24 +34,131 @@
 
     .grid-container-body {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        background-color: #f2f2f2;
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        background-color: #FFFFFF;
+        grid-template-areas: "curr-USD50-100 JPY AED" "curr-USD5-10-20 CAD SAR" "curr-USD1-2 SGD CNY" "AUD NZD THB" "EUR MYR PHP" "GBP HKD INR" "CHF KRW ARS";
 
     }
 
 
+    /* Coloumn 1 */
+    .curr-USD50-100 {
+        grid-area: curr-USD50-100;
+    }
+    
+    .curr-USD5-10-20 {
+        grid-area: curr-USD5-10-20;
+    }
+    
+    .curr-USD1-2 {
+        grid-area: curr-USD1-2;
+    }
+    
+    .curr-AUD {
+        grid-area: AUD;
+    }
+    
+    .curr-EUR {
+        grid-area: EUR;
+    }
+     
+    .curr-GBP {
+        grid-area: GBP;
+    }
+    
+    .curr-CHF {
+        grid-area: CHF;
+    }
+    
+    
+    
+    
+    
+    /* Coloumn 2 */
+    .curr-JPY{
+        grid-area: JPY;
+    }
+
+    .curr-CAD{
+        grid-area: CAD;
+    }
+
+    .curr-SGD{
+        grid-area: SGD;
+    }
+    
+    .curr-NZD{
+        grid-area: NZD;
+    }
+    
+    .curr-MYR{
+        grid-area: MYR;
+    }
+    
+    .curr-HKD{
+        grid-area: HKD;
+    }
+
+    .curr-KRW{
+        grid-area: KRW;
+    }
+    
+    
+    
+    /* Coloumn 3 */
+    .curr-AED{
+        grid-area: AED;
+    }
+    
+    .curr-SAR{
+        grid-area: SAR;
+    }
+ 
+    .curr-CNY{
+        grid-area: CNY;
+    }
+
+    .curr-THB{
+        grid-area: THB;
+    }
+    
+    .curr-PHP{
+        grid-area: PHP;
+    }
+
+    .curr-INR{
+        grid-area: INR;
+    }
+    
+    .curr-ARS{
+        grid-area: ARS;
+    }
+    
+    
 
     .grid-container-body li  {
-        background-color: #FFFFFF;
+        background-color: #dfdfdf;
         font-size: 30px;
         text-align: center;
         margin: 10px;
         cursor: pointer;
     }
 
-    .grid-container-body li:nth-child(even){
-        /* background-color: #A4CE95; */
-        border-left: 10px solid #fff;
+
+
+    .grid-container-body-final {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background-color: #FFFFFF;
+
+    }
+
+    .grid-container-body-final li  {
+        background-color: #dfdfdf;
+        font-size: 30px;
+        text-align: center;
+        margin: 10px;
+        cursor: pointer;
     }
     
 
@@ -100,7 +207,7 @@
             draggable: false,
         },
         autoplay: {
-            delay: 10000,
+            delay: 5000,
         },
     });
 </script>

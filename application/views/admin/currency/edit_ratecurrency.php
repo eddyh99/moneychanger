@@ -26,13 +26,14 @@
                     <form id="editrate" action="<?= base_url()?>currency/editcurrency_process" method="POST">
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nama Cabang</label>
+                            <label for="name" class="form-label">Currency</label>
                             <select name="currency" class="form-select editselect-currency" >
                                 <option value="ARS" <?= ($result->currency == "ARS") ? 'selected' : "" ?>>ARS</option>                                    
                                 <option value="AED" <?= ($result->currency == "AED") ? 'selected' : "" ?>>AED</option>
                                 <option value="AUD" <?= ($result->currency == "AUD") ? 'selected' : "" ?>>AUD</option>
                                 <option value="BDT" <?= ($result->currency == "BDT") ? 'selected' : "" ?>>BDT</option>
                                 <option value="CAD" <?= ($result->currency == "CAD") ? 'selected' : "" ?>>CAD</option>
+                                <option value="CHF" <?= ($result->currency == "CHF") ? 'selected' : "" ?>>CHF</option>
                                 <option value="CLP" <?= ($result->currency == "CLP") ? 'selected' : "" ?>>CLP</option>
                                 <option value="CNY" <?= ($result->currency == "CNY") ? 'selected' : "" ?>>CNY</option>
                                 <option value="CZK" <?= ($result->currency == "CZK") ? 'selected' : "" ?>>CZK</option>
@@ -54,6 +55,7 @@
                                 <option value="MXN" <?= ($result->currency == "MXN") ? 'selected' : "" ?>>MXN</option>
                                 <option value="MYR" <?= ($result->currency == "MYR") ? 'selected' : "" ?>>MYR</option>
                                 <option value="NGN" <?= ($result->currency == "NGN") ? 'selected' : "" ?>>NGN</option>
+                                <option value="NZD" <?= ($result->currency == "NZD") ? 'selected' : "" ?>>NZD</option>
                                 <option value="NOK" <?= ($result->currency == "NOK") ? 'selected' : "" ?>>NOK</option>
                                 <option value="NPR" <?= ($result->currency == "NPR") ? 'selected' : "" ?>>NPR</option>
                                 <option value="PEN" <?= ($result->currency == "PEN") ? 'selected' : "" ?>>PEN</option>
@@ -63,6 +65,7 @@
                                 <option value="RON" <?= ($result->currency == "RON") ? 'selected' : "" ?>>RON</option>
                                 <option value="SEK" <?= ($result->currency == "SEK") ? 'selected' : "" ?>>SEK</option>
                                 <option value="SGD" <?= ($result->currency == "SGD") ? 'selected' : "" ?>>SGD</option>
+                                <option value="SAR" <?= ($result->currency == "SAR") ? 'selected' : "" ?>>SAR</option>
                                 <option value="THB" <?= ($result->currency == "THB") ? 'selected' : "" ?>>THB</option>
                                 <option value="TRY" <?= ($result->currency == "TRY") ? 'selected' : "" ?>>TRY</option>
                                 <option value="TZS" <?= ($result->currency == "TZS") ? 'selected' : "" ?>>TZS</option>
@@ -70,7 +73,9 @@
                                 <option value="UGX" <?= ($result->currency == "UGX") ? 'selected' : "" ?>>UGX</option>
                                 <option value="USD" <?= ($result->currency == "USD") ? 'selected' : "" ?>>USD</option>
                                 <option value="VND" <?= ($result->currency == "VND") ? 'selected' : "" ?>>VND</option>
-                                <option value="ZAR" <?= ($result->currency == "ZAR") ? 'selected' : "" ?>>ZAR</option>
+                                <option value="USD 1, 2" <?= ($result->currency == "USD 1, 2") ? 'selected' : "" ?>>USD 1, 2</option>
+                                <option value="USD 5, 10, 20" <?= ($result->currency == "USD 5, 10, 20") ? 'selected' : "" ?>>USD 5, 10, 20</option>
+                                <option value="USD 50, 100" <?= ($result->currency == "USD 50, 100") ? 'selected' : "" ?>>USD 50, 100</option>
                             </select>
                         </div>
                         <div class="mb-3">

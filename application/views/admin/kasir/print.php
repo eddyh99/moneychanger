@@ -28,6 +28,11 @@
             color: #263B80;
         }
 
+        tbody {
+            border-top: 2px dashed #263B80;
+            border-bottom: 2px dashed #263B80;
+        }
+
         @media print {
             @page {
                 size: 80mm 250mm;
@@ -99,11 +104,6 @@
                     <th class="text-end">SUB TOTAL</th>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                        <td>USD <br> 100</td>
-                        <td >15,000.00</td>
-                        <td class="text-end">538,033,000.00</td>
-                    </tr> -->
                     <?php
                         $total = 0; 
                         foreach($_SESSION['print_transaksi']['detail'] as $dt){?>
@@ -135,16 +135,12 @@
 
    
         <div class="mx-3 mt-4">
-            <h class="text-monex">Term and Condition: </h6>
-            <ol>
-                <li class="text-monex">
-                    Kekurangan penerimaan uang tidak ditanggung setelah keluar kantor/Claim for shortage of cash after leaving out premises can not be considered
-                </li>
-            </ol>
-            <!-- <span class="text-decoration-underline text-start text-monex"></span>
-            <span  class="text-decoration-underline text-start text-monex"></span> -->
+            <h6 class="text-monex">Term and Condition: </h6>
+            <span class="text-monex fs-2">
+                Kekurangan penerimaan uang tidak ditanggung setelah keluar kantor/Claim for shortage of cash after leaving out premises can not be considered
+            </span>
         </div>
-        <div class="mt-3 mx-3 d-flex flex-column justify-content-end align-items-end">
+        <div class="my-3 mx-3 d-flex flex-column justify-content-end align-items-end">
             <span class="text-end text-monex fs-1">
                 <?= $_SESSION['logged_user']['kecamatan']?>, 
                 <?php 

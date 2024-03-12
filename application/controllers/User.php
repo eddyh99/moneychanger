@@ -104,11 +104,11 @@ class User extends CI_Controller
     public function edit_user($username)
     {
         $username	= base64_decode($this->security->xss_clean($username));
-
-        $url = URLAPI . "/v1/user/get_byusername?username=".$username;
+        
+        $url = URLAPI . "/v1/user/get_update_username?username=".$username;
 		$result = expatAPI($url)->result->messages;
 
-
+        
         $data = array(
             'title'             => NAMETITLE . ' - Edit user',
             'content'           => 'admin/user/edit_user',

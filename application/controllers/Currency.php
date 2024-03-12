@@ -111,19 +111,23 @@ class Currency extends CI_Controller
 
     public function edit_ratecurrency($currency)
     {
-        $prevcurrency	= base64_decode($this->security->xss_clean($currency));
+        $prevcurrency	= urlencode(base64_decode($this->security->xss_clean($currency)));
 
+        
         $url = URLAPI . "/v1/rate/getrate_bycurrency?cur=".$prevcurrency;
 		$result = expatAPI($url)->result->messages;
+
+        // echo '<pre>'.print_r($result,true).'</pre>';
+        // die;
 
         $data = array(
             'title'             => NAMETITLE . ' - Edit Rate Currency',
             'content'           => 'admin/currency/edit_ratecurrency',
             'extra'             => 'admin/currency/js/_js_index',
-            'result'          => $result,
+            'result'            => $result,
             'master_active'     => 'active',
             'master_in'         => 'in',
-            'dropdown_rate' => 'text-monex-blue'
+            'dropdown_rate'     => 'text-monex-blue'
         );
 
         $this->load->view('layout/wrapper', $data);
@@ -141,7 +145,7 @@ class Currency extends CI_Controller
         $_POST["rate_j"]=$rate_j;
 
         $input      = $this->input;
-        $currency   = $this->security->xss_clean($this->input->post("currency"));
+        $currency   = urlencode($this->security->xss_clean($this->input->post("currency")));
 
 		$this->form_validation->set_rules('currency', 'Currency', 'trim');
 		$this->form_validation->set_rules('rate', 'Buy Rate Currency', 'trim|required');
@@ -160,7 +164,7 @@ class Currency extends CI_Controller
             "rate"      => $rate,
             "rate_j"      => $rate_j,
         );
-    
+
         $url = URLAPI . "/v1/rate/updateRate?cur=".$currency;
 		$response = expatAPI($url, json_encode($mdata));
         $result = $response->result;
@@ -198,6 +202,10 @@ class Currency extends CI_Controller
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = str_replace(
+                    array(" ",","),
+                    array("", "-"), 
+                    $dt->currency);
                 array_push($slide1, (object)$temp);
             }
         }
@@ -209,6 +217,7 @@ class Currency extends CI_Controller
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = $dt->currency;
                 array_push($slide1, (object)$temp);
             }
         }
@@ -220,6 +229,7 @@ class Currency extends CI_Controller
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = $dt->currency;
                 array_push($slide2, (object)$temp);
             }
         }
@@ -231,6 +241,7 @@ class Currency extends CI_Controller
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = $dt->currency;
                 array_push($slide2, (object)$temp);
             }
         }
@@ -242,6 +253,7 @@ class Currency extends CI_Controller
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = $dt->currency;
                 array_push($slide3, (object)$temp);
             }
         }
@@ -253,12 +265,14 @@ class Currency extends CI_Controller
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = $dt->currency;
                 array_push($slide4, (object)$temp);
             } else if(!preg_match("/{$dt->currency}/i", 'USD 5, 10, 20 USD 1, 2 USD 50, 100 AUD EUR GBP CHF JPY CAD MYR  NZD SGD HKD KRW AED SAR CNY THB PHP INR ARS')){
                 $temp['flag'] = substr($dt->currency,0,3);
                 $temp['currency'] = $dt->currency;
                 $temp['rate'] = $dt->rate;
                 $temp['rate_j'] = $dt->rate_j;
+                $temp['class_cur'] = $dt->currency;
                 array_push($slide_last, (object)$temp);
             }
         }

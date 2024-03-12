@@ -162,7 +162,7 @@
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <div class="swiper-slide">
+                    <div class="swiper-slide"  data-swiper-autoplay="15000">
                         <div>
                             <div class="grid-container">
                                 <div class="grid-container-header">
@@ -183,7 +183,7 @@
                             </div>
                             <ul class="grid-container-body" id="showcurrency">
                                 <?php foreach($final as $dt){?>
-                                    <li>
+                                    <li class="curr-<?= $dt->class_cur?>">
                                         <div class="grid-container-data">
                                             <span class="d-flex align-items-center fw-bolder">
                                                 <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
@@ -212,7 +212,7 @@
                     </div>
 
                     <?php if($final_last != null){?>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide ">
                         <div>
                             <div class="grid-container">
                                 <div class="grid-container-header">
@@ -231,11 +231,11 @@
                                     <h3>Sell</h3>
                                 </div>
                             </div>
-                            <ul class="grid-container-body" id="example">
+                            <ul class="grid-container-body-final" id="example">
                                 <?php foreach(@$final_last as $dt){?>
                                     <li>
                                         <div class="grid-container-data">
-                                            <span class="d-flex align-items-center fw-bolder">
+                                            <span class="d-flex align-items-center justify-content-start fw-bolder">
                                                 <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
                                                 <?= $dt->currency?>
                                             </span>
@@ -300,7 +300,6 @@
 
     <script>
         new Sortable(document.getElementById('showcurrency'), {
-           
         });
     </script>
 
