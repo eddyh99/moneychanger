@@ -117,7 +117,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link  <?= @$liverate_active?>" href="<?= base_url()?>currency/show_rate" aria-expanded="false">
+                    <a class="sidebar-link  <?= @$liverate_active?>" href="<?= base_url()?>auth/show_rate" aria-expanded="false">
                         <span>
                             <i class="ti ti-chart-bar"></i>
                         </span>

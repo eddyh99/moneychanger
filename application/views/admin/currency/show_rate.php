@@ -40,7 +40,7 @@
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center">
-                                                    <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                    <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
@@ -74,7 +74,7 @@
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center">
-                                                    <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                    <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
@@ -112,7 +112,7 @@
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center fw-bolder">
-                                                    <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                    <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
@@ -139,7 +139,7 @@
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center fw-bolder">
-                                                    <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                    <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
@@ -186,7 +186,7 @@
                                     <li class="curr-<?= $dt->class_cur?>">
                                         <div class="grid-container-data">
                                             <span class="d-flex align-items-center fw-bolder">
-                                                <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
                                                 <?= $dt->currency?>
                                             </span>
 
@@ -236,7 +236,7 @@
                                     <li>
                                         <div class="grid-container-data">
                                             <span class="d-flex align-items-center justify-content-start fw-bolder">
-                                                <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
                                                 <?= $dt->currency?>
                                             </span>
 
