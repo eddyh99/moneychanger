@@ -36,15 +36,17 @@
 							<tr>
 								<th>Invoice</th>
 								<th>Tanggal</th>
-								<th>Customer</th>
-								<th>Nasionality</th>
-								<th>Total</th>
+								<th>Currency</th>
+								<th>Rate</th>
+								<th>Amount</th>
+								<th>Sub Total</th>
 							</tr>
 						</thead>
 						<tbody>
 						</tbody>
 						<tfoot>
 							<tr>
+								<th></th>
 								<th></th>
 								<th></th>
 								<th></th>

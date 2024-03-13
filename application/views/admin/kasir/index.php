@@ -91,8 +91,8 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="passpor" class="form-label">Passpor</label>
-                                    <input type="text" class="form-control" id="passpor" name="passpor" placeholder="Masukkan passpor..." required autocomplete="off">
+                                    <label for="passpor" class="form-label">Passpor/Identitas</label>
+                                    <input type="text" class="form-control" id="passpor" name="passpor" placeholder="Masukkan passpor/identitas..." required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                                         $dt->currency == 'RMB' || $dt->currency == 'EUR' || $dt->currency == 'JPY'  
                                                     ){  
                                                 ?>
-                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
+                                                    <option value="<?= $dt->currency?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
                                                 <?php 
                                                     }
                                                 }?>
@@ -131,7 +131,7 @@
                                                         $dt->currency != 'RMB' && $dt->currency != 'EUR' && $dt->currency != 'JPY'  
                                                     ){  
                                                 ?>
-                                                    <option value="<?= $dt->currency?>-<?= $dt->rate?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
+                                                    <option value="<?= $dt->currency?>" data-rate="<?= $dt->rate?>" data-ratejual="<?= $dt->rate_j?>" ><?= $dt->currency?></option>                                                                    
                                                 <?php 
                                                     }
                                                 }?>
@@ -144,14 +144,13 @@
                                     </div>
                                     <div class="col-6 my-4">
                                         <div class="mb-3 pt-1 d-flex flex-column justify-content-center align-items-center">
-                                         
                                             <div>
                                                 <h6 class="text-center">Rate IDR:</h6>
-                                                <h4 class="text-center">Rp. <span id="ratesummary1" class="money-input">0</span></h4>
+                                                <h4 class="text-center"><input id="ratesummary1" onblur="rateChange(this, 1)" type="text" value="0" class="money-input w-100 text-center border-0"></h4>
                                             </div>
                                             <div class="pt-4">
                                                 <h6 class="text-center">Total Amount IDR:</h6>
-                                                <h3 class="text-center">Rp. <span id="amountsummary1" class="money-input">0</span></h3>
+                                                <h3 class="text-center"><span id="amountsummary1" class="money-input">0</span></h3>
                                             </div>
                                         </div>
                                     </div>

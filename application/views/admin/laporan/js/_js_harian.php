@@ -51,24 +51,68 @@ var table;
 						return data;
 					  }
 			},
-			"drawCallback": function () {
-    			  var api = this.api();
-    			  var total=api.column( 4,{filter:'applied'} ).data().sum();
-    			  $( api.column( 4 ).footer() ).html(
-    				total.toLocaleString("en")
-    			  );
-    		},		
+			// "drawCallback": function () {
+			// 	var api = this.api();
+			// 	var total=api.column( 5,{filter:'applied'} ).data().sum();
+			// 	$( api.column( 5 ).footer() ).html(
+			// 		total.toLocaleString("en")
+			// 	);
+    		// },		
             "columns": [
-				  { "data": "invoice_id"},
-                  { 
+				{ "data": "invoice_id"},
+				{ 
 					data: null, "mRender": function(data, type, full, meta) {
-						return full.tanggal.slice(0, 10).split("-").reverse().join("-");
+						var time = full.tanggal.slice(11, 19);
+						var date = full.tanggal.slice(0, 10).split("-").reverse().join("-");
+						return time + " | " + date; 
+						// return full.tanggal.slice(0, 10).split("-").reverse().join("-");
 					} 
-				  },
-                  { "data": "nama" },
-                  { "data": "nasionality" },
-                  { "data": "total","render":$.fn.dataTable.render.number( ',', '.', 0, '' ),"className": 'dt-right'  },
-			]
+				},
+				{ "data": "currency"},
+				{ 	
+					data: null, 
+					"mRender": function(data, type, full, meta) {
+						var rate = parseFloat(full.rate); 
+						return rate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
+						return full.jumlah;
+					},
+				},
+				{ "data": "jumlah"},
+				{ 	
+					data: null, 
+					"mRender": function(data, type, full, meta) {
+						var subtotal = parseFloat(data.rate * data.jumlah); 
+						return String(subtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')); 
+						// return subtotal;
+					},
+					"className": 'dt-right' 
+				},
+			],
+			"footerCallback": function ( row, data, start, end, display ) {
+				var api = this.api();
+
+				// Remove the formatting to get integer data for summation
+				var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            	};
+
+				rendered = api
+					.cells( null, 5, { page: 'current'} )
+					.render('display')
+					.reduce( function (a, b) {
+						return intVal(a) + intVal(b);
+					}, 0 );
+
+
+				// Update footer
+				$( api.column( 5 ).footer() ).html(
+				 	rendered.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+				);
+
+			}
 	});
 	
 	$("#lihat").on("click",function(){

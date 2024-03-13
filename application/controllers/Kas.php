@@ -15,10 +15,14 @@ class Kas extends CI_Controller
 
     public function index()
     {
+        $url = URLAPI . "/v1/cabang/get_allcabang";
+		$result = expatAPI($url)->result->messages;
+
         $data = array(
             'title'             => NAMETITLE . ' - Kas',
             'content'           => 'admin/kas/index',
             'extra'             => 'admin/kas/js/_js_index',
+            'cabang'            =>  $result,
             'kas_active'        => 'active',
         );
         $this->load->view('layout/wrapper', $data);
@@ -27,18 +31,29 @@ class Kas extends CI_Controller
 
     public function list_allkastoday()
     {
-        $url = URLAPI . "/v1/kas/get_allkas?cabang=1";
+
+        $cabang_id	= $this->security->xss_clean($this->input->post('cabang'));
+        
+        if($_SESSION['logged_user']['role'] == 'kasir'){
+            $cabang_id = $_SESSION['logged_user']['idcabang'];
+        }
+
+        $url = URLAPI . "/v1/kas/get_allkas?cabang=".$cabang_id;
 		$result = expatAPI($url)->result->messages;
         echo json_encode($result);  
     }
 
     public function add_kas()
     {
+        $url = URLAPI . "/v1/cabang/get_allcabang";
+		$result = expatAPI($url)->result->messages;
+
         $data = array(
             'title'             => NAMETITLE . ' - Tambah Kas',
             'content'           => 'admin/kas/add_kas',
             'extra'             => 'admin/kas/js/_js_index',
-            'kas_active'     => 'active',
+            'cabang'            => $result,
+            'kas_active'        => 'active',
         );
         $this->load->view('layout/wrapper', $data);
     }
@@ -60,18 +75,31 @@ class Kas extends CI_Controller
 		}
 
                
-        $input      = $this->input;
-        $nominal   = $this->security->xss_clean($this->input->post("nominal"));
-        $jenis       = $this->security->xss_clean($this->input->post("jenis"));
-        $keterangan       = $this->security->xss_clean($this->input->post("keterangan"));
+        $input          = $this->input;
+        $cabang         = $this->security->xss_clean($this->input->post("cabang"));
+        $nominal        = $this->security->xss_clean($this->input->post("nominal"));
+        $jenis          = $this->security->xss_clean($this->input->post("jenis"));
+        $keterangan     = $this->security->xss_clean($this->input->post("keterangan"));
 
-        $mdata = array(
-            "nominal"       => $nominal,
-            "jenis"         => $jenis,
-            "keterangan"    => $keterangan,
-            "cabang"        => $_SESSION['logged_user']['idcabang'],
-        );
+        if($_SESSION['logged_user']['role'] == 'admin'){
+            
+            $mdata = array(
+                "nominal"       => $nominal,
+                "jenis"         => $jenis,
+                "keterangan"    => $keterangan,
+                "cabang"        => $cabang,
+            );
 
+        }else {
+            
+            $mdata = array(
+                "nominal"       => $nominal,
+                "jenis"         => $jenis,
+                "keterangan"    => $keterangan,
+                "cabang"        => $_SESSION['logged_user']['idcabang'],
+            );
+            
+        }
             
         $url = URLAPI . "/v1/kas/addKas";
 		$response = expatAPI($url, json_encode($mdata));

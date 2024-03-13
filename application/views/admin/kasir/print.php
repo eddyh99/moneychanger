@@ -22,10 +22,15 @@
 
         table, th, td {
             border-collapse:collapse;
-            border: 1px dashed rgba(0, 0, 0, 0.1);
+            border: none;
             width: 100%;
             padding: 5px;
             color: #263B80;
+        }
+
+        tbody {
+            border-top: 2px dashed #263B80;
+            border-bottom: 2px dashed #263B80;
         }
 
         @media print {
@@ -59,7 +64,7 @@
     <div class="print-transaksi">
         <div class="d-flex flex-column align-items-center justify-content-center">
             <img class="text-center pt-3 m-0" height="100" width="auto" src="<?= base_url()?>assets/img/printlogo.png" alt="logo">
-            <span class="text-center logo-text">PEDAGANG VALUTA ASING/<br>MONEY CHANGER</span>
+            <span class="text-center logo-text">PEDAGANG VALUTA ASING/<br>Authorized Money Changer</span>
         </div>
         <div class="d-flex flex-column align-items-center justify-content-center mt-3">
             <span class="text-center text-monex text-uppercase"><?= $_SESSION['logged_user']['cabang']?></span>
@@ -74,6 +79,10 @@
         <div>
             <h4 class="text-decoration-underline text-center text-monex">Telah kami beli dari</h4>
             <h4  class="text-decoration-underline text-center text-monex">We have bought from</h4>
+        </div>
+        <div class="d-flex flex-column justify-content-end mx-3">
+            <span class="text-end"><?= date("d/m/Y"); ?></span>
+            <span class="text-end"><?= date("h:i:s a"); ?></span>
         </div>
         <div class="mx-3 my-4">
             <span class="fs-2 text-monex"><b>Name</b>&emsp;&emsp;&emsp;&ensp;&nbsp;&nbsp;  : <?= $_SESSION['print_transaksi']['nama']?> </span>
@@ -95,11 +104,6 @@
                     <th class="text-end">SUB TOTAL</th>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                        <td>USD <br> 100</td>
-                        <td >15,000.00</td>
-                        <td class="text-end">538,033,000.00</td>
-                    </tr> -->
                     <?php
                         $total = 0; 
                         foreach($_SESSION['print_transaksi']['detail'] as $dt){?>
@@ -131,16 +135,12 @@
 
    
         <div class="mx-3 mt-4">
-            <h class="text-monex">Term and Condition: </h6>
-            <ol>
-                <li class="text-monex">
-                    Kekurangan penerimaan uang tidak ditanggung setelah keluar kantor/Claim for shortage of cash after leaving out premises can not be considered
-                </li>
-            </ol>
-            <!-- <span class="text-decoration-underline text-start text-monex"></span>
-            <span  class="text-decoration-underline text-start text-monex"></span> -->
+            <h6 class="text-monex">Term and Condition: </h6>
+            <span class="text-monex fs-2">
+                Kekurangan penerimaan uang tidak ditanggung setelah keluar kantor/Claim for shortage of cash after leaving out premises can not be considered
+            </span>
         </div>
-        <div class="mt-3 mx-3 d-flex flex-column justify-content-end align-items-end">
+        <div class="my-3 mx-3 d-flex flex-column justify-content-end align-items-end">
             <span class="text-end text-monex fs-1">
                 <?= $_SESSION['logged_user']['kecamatan']?>, 
                 <?php 
@@ -156,7 +156,7 @@
                 <input type="text" style="width: 25mm;height: 15mm;">
             </div>
             <div>
-                <span class="text-monex" style="font-size:8px;"></span><br>
+                <span class="text-monex" style="font-size:8px;">Cashier <?= $_SESSION['logged_user']['nama']?></span><br>
                 <input type="text" style="width: 25mm;height: 15mm;">
             </div>
         </div>
@@ -177,7 +177,6 @@
             window.location.replace("<?= base_url()?>transaksi");
         }
 
-        console.log(Number($('.rate').text()));
     </script>
 </body>
 </html>

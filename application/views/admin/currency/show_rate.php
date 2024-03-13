@@ -12,14 +12,14 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
     
 </head>
-<body>
+<body class="bg-black">
     <div class="container-fluid" >
         <div class="row">
-            <h1 class="text-center pt-3  fw-bolder text-decoration-underline"><?= $_SESSION['logged_user']['cabang']?></h1>
-            <h1 class="text-center pt-3 pb-5 fw-bolder fst-italic">Authorized Money Changer</h1>
+            <h1 class="text-center pt-3  fw-bolder text-uppercase text-white"><?= $_SESSION['logged_user']['cabang']?></h1>
+            <h1 class="text-center pt-3 pb-5 fw-bolder fst-italic text-white">Authorized Money Changer</h1>
          
             <!-- Slider main container -->
-            <div class="swiper">
+            <div class="swiper d-none">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
@@ -30,8 +30,8 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -39,12 +39,19 @@
                                             foreach($slide1 as $dt){
                                         ?>
                                             <tr>
-                                                <td class="d-flex align-items-center fw-bolder">
+                                                <td class="d-flex align-items-center">
                                                     <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
-                                                <td><?= number_format(@$dt->rate_j,2,".",",")?></td>
+
+                                                <?php if($dt->rate_j == 0.00){?>
+                                                    <td>-</td>
+                                                <?php }else{?>
+                                                    <td>
+                                                        <?=  number_format(@$dt->rate_j,2,".",",") ?>    
+                                                    </td>
+                                                <?php }?>
                                             </tr>
                                         <?php 
                                             }
@@ -57,21 +64,28 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                            foreach($slide2 as $dt){ 
+                                        <?php
+                                            foreach($slide2 as $dt){
                                         ?>
                                             <tr>
-                                                <td class="d-flex align-items-center fw-bolder">
+                                                <td class="d-flex align-items-center">
                                                     <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
                                                     <?= $dt->currency?>
                                                 </td>
                                                 <td><?= number_format(@$dt->rate,2,".",",")?></td>
-                                                <td><?= number_format(@$dt->rate_j,2,".",",")?></td>
+
+                                                <?php if($dt->rate_j == 0.00){?>
+                                                    <td>-</td>
+                                                <?php }else{?>
+                                                    <td>
+                                                        <?=  number_format(@$dt->rate_j,2,".",",") ?>    
+                                                    </td>
+                                                <?php }?>
                                             </tr>
                                         <?php 
                                             }
@@ -88,13 +102,13 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            foreach($slide1 as $dt){
+                                            foreach($slide3 as $dt){
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center fw-bolder">
@@ -115,13 +129,13 @@
                                     <thead>
                                         <tr>
                                             <th>Currency</th>
-                                            <th>We Buy</th>
-                                            <th>We Sell</th>
+                                            <th>Buy</th>
+                                            <th>Sell</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            foreach($slide2 as $dt){      
+                                            foreach($slide4 as $dt){      
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center fw-bolder">
@@ -142,7 +156,121 @@
                 </div>
                <!-- If we need scrollbar -->
                 <div class="swiper-scrollbar"></div>
-            </div>
+            </div> 
+
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"  data-swiper-autoplay="15000">
+                        <div>
+                            <div class="grid-container">
+                                <div class="grid-container-header">
+                                    <h3>Currency</h3>
+                                    <h3>Buy</h3>
+                                    <h3>Sell</h3>
+                                </div>
+                                <div class="grid-container-header">
+                                    <h3>Currency</h3>
+                                    <h3>Buy</h3>
+                                    <h3>Sell</h3>
+                                </div>
+                                <div class="grid-container-header">
+                                    <h3>Currency</h3>
+                                    <h3>Buy</h3>
+                                    <h3>Sell</h3>
+                                </div>
+                            </div>
+                            <ul class="grid-container-body" id="showcurrency">
+                                <?php foreach($final as $dt){?>
+                                    <li class="curr-<?= $dt->class_cur?>">
+                                        <div class="grid-container-data">
+                                            <span class="d-flex align-items-center fw-bolder">
+                                                <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                <?= $dt->currency?>
+                                            </span>
+
+                                            <?php if($dt->rate == 0.00){?>
+                                                <span>-</span>
+                                            <?php }else{?>
+                                                <span><?= number_format(@$dt->rate,2,".",",")?></span>
+                                            <?php }?>
+
+                                            <?php if($dt->rate_j == 0.00){?>
+                                                <span>-</span>
+                                            <?php }else{?>
+                                                <span><?= number_format(@$dt->rate_j,2,".",",")?></span>
+                                            <?php }?>
+
+
+                                        </div>
+                                    </li>
+                                <?php }?>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <?php if($final_last != null){?>
+                    <div class="swiper-slide ">
+                        <div>
+                            <div class="grid-container">
+                                <div class="grid-container-header">
+                                    <h3>Currency</h3>
+                                    <h3>Buy</h3>
+                                    <h3>Sell</h3>
+                                </div>
+                                <div class="grid-container-header">
+                                    <h3>Currency</h3>
+                                    <h3>Buy</h3>
+                                    <h3>Sell</h3>
+                                </div>
+                                <div class="grid-container-header">
+                                    <h3>Currency</h3>
+                                    <h3>Buy</h3>
+                                    <h3>Sell</h3>
+                                </div>
+                            </div>
+                            <ul class="grid-container-body-final" id="example">
+                                <?php foreach(@$final_last as $dt){?>
+                                    <li>
+                                        <div class="grid-container-data">
+                                            <span class="d-flex align-items-center justify-content-start fw-bolder">
+                                                <img src="<?= base_url()?>assets/flags_svg/<?= $dt->flag?>.svg" height="70" class="me-2" alt="" >
+                                                <?= $dt->currency?>
+                                            </span>
+
+                                            <?php if($dt->rate == 0.00){?>
+                                                <span>-</span>
+                                            <?php }else{?>
+                                                <span><?= number_format(@$dt->rate,2,".",",")?></span>
+                                            <?php }?>
+
+                                            <?php if($dt->rate_j == 0.00){?>
+                                                <span>-</span>
+                                            <?php }else{?>
+                                                <span><?= number_format(@$dt->rate_j,2,".",",")?></span>
+                                            <?php }?>
+
+
+                                        </div>
+                                    </li>
+                                <?php }?>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <?php }?>
+                </div>
+               <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div> 
+
+
+
+
+
+
         </div>
     </div>
 
@@ -163,10 +291,18 @@
 	<script src="<?= base_url()?>assets/js/script.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/1.8.2/autoNumeric.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 	<?php
 		if (isset($extra)) {
 			$this->load->view($extra);
 		}
 	?>
+
+    <script>
+        new Sortable(document.getElementById('showcurrency'), {
+        });
+    </script>
+
+
 </body>
 </html>

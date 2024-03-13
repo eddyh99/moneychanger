@@ -88,4 +88,4 @@ define('NAMETITLE','Money Changer');
 
 
 //Inisialisasi Database Table
-define("URLAPI",'https://api-monex.softwarebali.com');
+define("URLAPI",'https://api.bestmoneychangerscsa.com');

@@ -60,13 +60,13 @@ class Transaksi extends CI_Controller
 
         // echo '<pre>'.print_r($currency,true).'</pre>';
 
-        $newCurrency = array();
-        foreach($currency as $dt){
-            array_push($newCurrency, substr($dt, 0, 3));
-        }
+        // $newCurrency = array();
+        // foreach($currency as $dt){
+        //     array_push($newCurrency, substr($dt, 0, 3));
+        // }
 
         $temp_transaksi = array();
-        foreach($newCurrency as $keycurr=>$valuecur){
+        foreach($currency as $keycurr=>$valuecur){
             $temp['currency']   = $valuecur;  
             foreach($lembar as $keylembar=>$valuelembar){ 
                 $temp['jumlah']   = $valuelembar;  
@@ -119,12 +119,14 @@ class Transaksi extends CI_Controller
             'jenis'             => $jenis,
             "detail"            => $final
         );
-
+        // echo '<pre>'.print_r($mdata,true).'</pre>';
+        // die;
 
         $url = URLAPI . "/v1/transaksi/addTransaksi";
 		$response = expatAPI($url, json_encode($mdata));
         $result = $response->result;
 
+     
         if($response->status == 200) {
             $this->session->set_userdata('print_transaksi', $mdata);
             $this->session->set_flashdata('success', $result->messages);
@@ -162,7 +164,7 @@ class Transaksi extends CI_Controller
 		$awal       = date_format(date_create($tgl[0]),"Y-m-d");
 		$akhir      = date_format(date_create($tgl[1]),"Y-m-d");
 		
-		$url=URLAPI."/v1/laporan/getListTransaction?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
+		$url=URLAPI."/v1/laporan/getTransactionByDate?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
         $response = expatAPI($url)->result->messages; 
         echo json_encode($response);
 

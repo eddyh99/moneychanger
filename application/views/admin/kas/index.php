@@ -16,28 +16,26 @@
         <div class="col-lg-12 d-flex align-items-strech">
             <div class="card border-expat w-100">
                 <div class="card-body">
-                    <!-- <div class="row d-flex justify-content-start align-items-start form-group mb-3">
-                        <div class="col-3">
-                            <label class="text-start d-block mb-2">Cabang</label>
-                            <select id="tipeticket" name="tipeticket" class="form-select">
-                                <option value="all">Semua Cabang</option>
-                                <option value="1">Ubud</option>
-                            </select>
+                <h5 class="card-title fw-semibold mb-4">Laporan Kas</h5>
+                <?php if ($_SESSION["logged_user"]["role"]=="admin"){?>
+
+                        <div class="row my-4">
+                            <label class="col-form-label">Cabang</label>
+                            <div class="col-3">
+                                    <select id="cabang" class="form-select" name="cabang">
+                                        <?php
+                                        foreach ($cabang as $dt){
+                                        ?>
+                                            <option value="<?=$dt->id?>"><?=$dt->nama?></option>
+                                        <?php  
+                                            }
+                                        ?>
+                                    </select>
+                            </div>
+                            <div class="col"><button id="lihat" type="submit" class="btn btn-primary">Lihat</button></div>
                         </div>
-                        <div class="col-4">
-                            <label class="text-start d-block mb-2">Range Tanggal</label>
-                            <input type="text" id="tanggal" name="tanggal" class="form-control" value="" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="row form-group mb-5">
-                        <div class="col text-start">
-                            <button id="lihat" class="btn btn-warning">
-                                <i class="ti ti-filter fs-5 me-1"></i>
-                                Filter
-                            </button>
-                        </div>
-                    </div> -->
-                    <h5 class="card-title fw-semibold mb-4">Laporan Kas</h5>
+                    <?php }?>
+                   
                     <table id="table_list_kas" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>

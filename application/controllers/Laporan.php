@@ -71,10 +71,8 @@ class Laporan extends CI_Controller
 	public function harian()
 	{
 
-
 		$tgl		= $this->security->xss_clean($this->input->post('tgl'));
 		$cabang_id	= $this->security->xss_clean($this->input->post('cabang'));
-
 		
 		if(!empty($tgl) || !empty($cabang_id)){
 
@@ -86,6 +84,9 @@ class Laporan extends CI_Controller
 	
 			$urlKas = URLAPI . "/v1/laporan/get_kasbydate?tanggal=".$tgl."&cabang_id=".$cabang_id;
 			$resultKas = expatAPI($urlKas)->result->messages;
+			
+			$urlSisaKasSebelumnya = URLAPI . "/v1/laporan/get_sisa?tanggal=".$tgl."&cabang_id=".$cabang_id;
+			$resultSisaKasSebelumnya = expatAPI($urlSisaKasSebelumnya)->result->messages;
 	
 			$urlCabang = URLAPI . "/v1/cabang/get_allcabang";
 			$resultCabang = expatAPI($urlCabang)->result->messages;
@@ -100,6 +101,9 @@ class Laporan extends CI_Controller
 	
 			$urlKas = URLAPI . "/v1/laporan/get_kasbydate?tanggal=".$tgl."&cabang_id=1";
 			$resultKas = expatAPI($urlKas)->result->messages;
+
+			$urlSisaKasSebelumnya = URLAPI . "/v1/laporan/get_sisa?tanggal=".$tgl."&cabang_id=1";
+			$resultSisaKasSebelumnya = expatAPI($urlSisaKasSebelumnya)->result->messages;
 	
 			$urlCabang = URLAPI . "/v1/cabang/get_allcabang";
 			$resultCabang = expatAPI($urlCabang)->result->messages;
@@ -113,6 +117,7 @@ class Laporan extends CI_Controller
 			'saldo'				=> $resultSaldoPenukaran,
 			'pendapatan'		=> $resultPendapatan,
 			'kas'				=> $resultKas,
+			'sisakas_sebelumnya'=> $resultSisaKasSebelumnya,
 			'tgl'				=> $tgl,
 			'rekapharian_active'  => 'active',
 		);
