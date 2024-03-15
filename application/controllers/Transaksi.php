@@ -1,6 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/*----------------------------------------------------------
+    Modul Name  : Transaksi
+    Desc        : Modul ini di gunakan untuk melakukan proses transaksi kasir
+                  
+    Sub fungsi  : 
+    - index                 : Tampilan input transaksi
+    - transaksi_process  	: Prosess menyimpan data transaksi
+    - print_trasaksi        : Print nota
+    - harian  			    : Tampilan datatables transkasi harian
+    - historyharian  	    : Proses call API untuk kebutuhan datatables transaksi harian
+------------------------------------------------------------*/ 
+
 class Transaksi extends CI_Controller
 {
 
@@ -18,8 +30,7 @@ class Transaksi extends CI_Controller
 
         $url = URLAPI . "/v1/rate/get_allrate";
 		$response = expatAPI($url)->result->messages;   
-        // print_r(json_encode($response));
-        // die;
+
 		$data = array(
             'title'             => NAMETITLE . ' - Kasir',
             'content'           => 'admin/kasir/index',
@@ -28,6 +39,20 @@ class Transaksi extends CI_Controller
             'transaksi_active'      => 'active',
         );
         $this->load->view('layout/wrapper', $data);
+    }
+
+    
+    public function getallcustomer()
+    {
+        if(empty($_GET['identitas'])){
+            $url = URLAPI . "/v1/transaksi/getCustomer";
+        }else{
+            $url = URLAPI . "/v1/transaksi/getCustomer?identitas=".$_GET['identitas'];    
+        }
+        
+        $result = expatAPI($url)->result->messages;
+        echo json_encode($result);
+        
     }
 
     public function transaksi_process()
@@ -58,12 +83,6 @@ class Transaksi extends CI_Controller
         $lembar         = $this->security->xss_clean($this->input->post("lembar"));
         $rate           = $this->security->xss_clean($this->input->post("rate"));
 
-        // echo '<pre>'.print_r($currency,true).'</pre>';
-
-        // $newCurrency = array();
-        // foreach($currency as $dt){
-        //     array_push($newCurrency, substr($dt, 0, 3));
-        // }
 
         $temp_transaksi = array();
         foreach($currency as $keycurr=>$valuecur){
@@ -119,6 +138,7 @@ class Transaksi extends CI_Controller
             'jenis'             => $jenis,
             "detail"            => $final
         );
+
         // echo '<pre>'.print_r($mdata,true).'</pre>';
         // die;
 

@@ -90,9 +90,13 @@
                                         ?>
                                     </select>
                                 </div>
-                                <div class="mb-3">
+                                <div class="my-4">
                                     <label for="passpor" class="form-label">Passpor/Identitas</label>
-                                    <input type="text" class="form-control" id="passpor" name="passpor" placeholder="Masukkan passpor/identitas..." required autocomplete="off">
+                                    <select class="passpor-select2" id="passpor" name="passpor" required>
+                                        <!-- <option >--Passpor/Identitas--</option>
+                                        <option value="Test">Test</option> -->
+                                    </select>
+                                    <!-- <input type="text" class="form-control" id="passpor" name="passpor" placeholder="Masukkan passpor/identitas..." required autocomplete="off"> -->
                                 </div>
                             </div>
                         </div>

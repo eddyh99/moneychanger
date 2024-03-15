@@ -1,6 +1,20 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+
+/*----------------------------------------------------------
+    Modul Name  : Cabang
+    Desc        : Modul ini di gunakan untuk melakukan setup cabang
+                  
+    Sub fungsi  : 
+    - index             : Tampilan halaman datatables seluruh cabang
+    - list_allcabang    : Prosess call API kebutuhan databales cabang
+    - add_cabang        : Tampilan Input menambahkan  cabang
+    - addcabang_process : Proses menyimpan data cabang
+    - edit_cabang       : Tampilan mengupdate cabang
+    - editcabang_process : Proses mengupdate data cabang
+    - delete            : Proses hapus cabang
+------------------------------------------------------------*/ 
 class Cabang extends CI_Controller
 {
 

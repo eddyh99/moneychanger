@@ -141,22 +141,22 @@
             </span>
         </div>
         <div class="my-3 mx-3 d-flex flex-column justify-content-end align-items-end">
-            <span class="text-end text-monex fs-1">
+            <span class="text-end text-monex" style="font-size:12px;">
                 <?= $_SESSION['logged_user']['kecamatan']?>, 
                 <?php 
                     $datenow = date("Y-m-d");
                     echo date('jS F Y', strtotime($datenow));
                 ?>
             </span>
-            <span class="text-end text-monex text-uppercase fs-1"><?= $_SESSION['logged_user']['cabang']?></span>
+            <span class="text-end text-monex text-uppercase"  style="font-size:12px;"><?= $_SESSION['logged_user']['cabang']?></span>
         </div>
         <div class="mx-3 d-flex justify-content-between">
             <div>
-                <span class="text-monex" style="font-size:8px;">Guest Signature</span><br>
+                <span class="text-monex" style="font-size:12px;">Guest Signature</span><br>
                 <input type="text" style="width: 25mm;height: 15mm;">
             </div>
             <div>
-                <span class="text-monex" style="font-size:8px;">Cashier <?= $_SESSION['logged_user']['nama']?></span><br>
+                <span class="text-monex" style="font-size:12px;">Cashier <?= $_SESSION['logged_user']['nama']?></span><br>
                 <input type="text" style="width: 25mm;height: 15mm;">
             </div>
         </div>

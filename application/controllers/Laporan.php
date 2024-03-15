@@ -1,6 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/*----------------------------------------------------------
+    Modul Name  : Laporan
+    Desc        : Modul ini di gunakan untuk membuat laporan
+                  
+    Sub fungsi  : 
+    - penukaran             : Tampilan halaman datatables seluruh penukaran
+    - historypenukaran  	: Prosess call API kebutuhan datatables seluruh penukaran
+    - kaskeluar             : Tampilan halaman datatables kas keluar
+    - historykas  			: Prosess call API kebutuhan datatables kas keluar
+    - harian  				: Tampilan dan Proses rekapan harian
+------------------------------------------------------------*/ 
+
 class Laporan extends CI_Controller
 {
 
@@ -17,9 +29,7 @@ class Laporan extends CI_Controller
 		$url = URLAPI . "/v1/cabang/get_allcabang";
 		$result = expatAPI($url)->result->messages;
 
-				
-		// $url=URLAPI."/v1/laporan/getListPenukaran?awal=2024-03-01&akhir=2024-03-01&cabang_id=1";
-        // $response = expatAPI($url)->result; 
+			
 		$data = array(
             'title'             => NAMETITLE . ' - Laporan Penukaran',
             'content'           => 'admin/laporan/penukaran',

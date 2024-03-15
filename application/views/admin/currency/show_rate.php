@@ -13,10 +13,10 @@
     
 </head>
 <body class="bg-black">
-    <div class="container-fluid" >
-        <div class="row">
-            <h1 class="text-center pt-3  fw-bolder text-uppercase text-white"><?= $_SESSION['logged_user']['cabang']?></h1>
-            <h1 class="text-center pt-3 pb-5 fw-bolder fst-italic text-white">Authorized Money Changer</h1>
+    <div class="container-fluid">
+        <div class="row m-4 mt-5">
+            <h1 class="text-center pt-5 mt-5 fw-bolder text-uppercase text-white poppins-black" style="font-size: 86px;"><?= $_SESSION['logged_user']['cabang']?></h1>
+            <h1 class="text-center pt-3 pb-4 fw-semibold fst-italic text-white">Authorized Money Changer</h1>
          
             <!-- Slider main container -->
             <div class="swiper d-none">
@@ -159,10 +159,8 @@
             </div> 
 
             <div class="swiper">
-                <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide"  data-swiper-autoplay="15000">
+                    <div class="swiper-slide" >
                         <div>
                             <div class="grid-container">
                                 <div class="grid-container-header">
@@ -182,36 +180,43 @@
                                 </div>
                             </div>
                             <ul class="grid-container-body" id="showcurrency">
-                                <?php foreach($final as $dt){?>
+                                <?php foreach($final as $dt){
+                                    if($dt->rate != 0.00 && $dt->rate != 0.00){    
+                                ?>
                                     <li class="curr-<?= $dt->class_cur?>">
                                         <div class="grid-container-data">
                                             <span class="d-flex align-items-center fw-bolder">
                                                 <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
-                                                <?= $dt->currency?>
+                                                <span class="text-black fw-bolder" style="font-size: 36px;">
+                                                    <?= $dt->currency?>
+                                                </span>
                                             </span>
 
                                             <?php if($dt->rate == 0.00){?>
-                                                <span>-</span>
+                                                <span class="rate">-</span>
                                             <?php }else{?>
-                                                <span><?= number_format(@$dt->rate,2,".",",")?></span>
+                                                <span class="rate"><?= number_format(@$dt->rate,2,".",",")?></span>
                                             <?php }?>
 
                                             <?php if($dt->rate_j == 0.00){?>
-                                                <span>-</span>
+                                                <span class="rate">-</span>
                                             <?php }else{?>
-                                                <span><?= number_format(@$dt->rate_j,2,".",",")?></span>
+                                                <span class="rate"><?= number_format(@$dt->rate_j,2,".",",")?></span>
                                             <?php }?>
 
 
                                         </div>
                                     </li>
-                                <?php }?>
+                                <?php
+                                        }
+                                    }
+                                ?>
 
                             </ul>
                         </div>
                     </div>
 
-                    <?php if($final_last != null){?>
+                    <!-- <?php if($final_last != null){?>
                     <div class="swiper-slide ">
                         <div>
                             <div class="grid-container">
@@ -241,15 +246,15 @@
                                             </span>
 
                                             <?php if($dt->rate == 0.00){?>
-                                                <span>-</span>
+                                                <span class="rate">-</span>
                                             <?php }else{?>
-                                                <span><?= number_format(@$dt->rate,2,".",",")?></span>
+                                                <span class="rate"><?= number_format(@$dt->rate,2,".",",")?></span>
                                             <?php }?>
 
                                             <?php if($dt->rate_j == 0.00){?>
-                                                <span>-</span>
+                                                <span class="rate">-</span>
                                             <?php }else{?>
-                                                <span><?= number_format(@$dt->rate_j,2,".",",")?></span>
+                                                <span class="rate"><?= number_format(@$dt->rate_j,2,".",",")?></span>
                                             <?php }?>
 
 
@@ -260,9 +265,8 @@
                             </ul>
                         </div>
                     </div>
-                    <?php }?>
+                    <?php }?> -->
                 </div>
-               <!-- If we need scrollbar -->
                 <div class="swiper-scrollbar"></div>
             </div> 
 

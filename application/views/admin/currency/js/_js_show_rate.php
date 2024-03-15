@@ -1,6 +1,14 @@
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    .poppins-black {
+        font-family: "Poppins", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+    }
+
     h1{
-        font-size: 50px;
+        font-size: 70px;
     }
     thead {
         border-bottom: 5px solid  #000;
@@ -34,7 +42,7 @@
 
     .grid-container-body {
         display: grid;
-        /* grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: 1fr 1fr 1fr;
         background-color: #FFFFFF;
         grid-template-areas: "curr-USD50-100 JPY AED" "curr-USD5-10-20 CAD SAR" "curr-USD1-2 SGD CNY" "AUD NZD THB" "EUR MYR PHP" "GBP HKD INR" "CHF KRW ARS";
 
@@ -137,11 +145,20 @@
     
 
     .grid-container-body li  {
-        background-color: #dfdfdf;
+        background-color: #f0f0f0;
         font-size: 30px;
         text-align: center;
         margin: 10px;
         cursor: pointer;
+    }
+
+    .grid-container-body li .rate  {
+        font-weight: 900;
+        color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
     }
 
 
@@ -154,12 +171,23 @@
     }
 
     .grid-container-body-final li  {
-        background-color: #dfdfdf;
+        background-color: #f0f0f0;
         font-size: 30px;
         text-align: center;
         margin: 10px;
         cursor: pointer;
     }
+
+    .grid-container-body-final li .rate  {
+        font-weight: 900;
+        color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+    }
+
+
     
 
     .grid-container {
@@ -178,10 +206,12 @@
 
     .grid-container-header h3 {
         padding: 20px;
-        font-size: 30px;
+        font-size: 36px;
+        font-weight: 900;
         text-align: center;
         margin: 10px; 
         color: #ffffff;
+        font-size: 
     }
 
     .grid-container-data {
@@ -205,9 +235,6 @@
         scrollbar: {
             el: '.swiper-scrollbar',
             draggable: false,
-        },
-        autoplay: {
-            delay: 5000,
         },
     });
 </script>
