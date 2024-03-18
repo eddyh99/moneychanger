@@ -8,8 +8,10 @@
     }
 
     h1{
-        font-size: 70px;
+        font-size: 36px;
     }
+
+
     thead {
         border-bottom: 5px solid  #000;
         background-color: #387ADF;
@@ -21,8 +23,8 @@
     }
 
     th, td {
-        font-size: 35px;
-        padding: 20px 50px;
+        font-size: 24px;
+        padding: 5px;
     }
 
     tr td {
@@ -146,10 +148,13 @@
 
     .grid-container-body li  {
         background-color: #f0f0f0;
-        font-size: 30px;
         text-align: center;
-        margin: 10px;
+        margin: 5px;
         cursor: pointer;
+    }
+
+    .grid-container-body li img {
+        height: 30px;
     }
 
     .grid-container-body li .rate  {
@@ -158,7 +163,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 36px;
+        font-size: 20px;
+        padding: 0px;
     }
 
 
@@ -172,9 +178,9 @@
 
     .grid-container-body-final li  {
         background-color: #f0f0f0;
-        font-size: 30px;
+        font-size: 24px;
         text-align: center;
-        margin: 10px;
+        margin: 5px;
         cursor: pointer;
     }
 
@@ -184,7 +190,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 36px;
+        font-size: 30px;
     }
 
 
@@ -198,25 +204,25 @@
 
     .grid-container-header {
         display: grid;
-        grid-template-columns: 33.333333% 33.333333% 33.333333%;
+        grid-template-columns: 40% 40% 20%;
         background-color: #387ADF;
         padding: 10px;
    
     }
 
     .grid-container-header h3 {
-        padding: 20px;
-        font-size: 36px;
+        /* padding: 5px; */
+        font-size: 18px;
         font-weight: 900;
         text-align: center;
         margin: 10px; 
         color: #ffffff;
-        font-size: 
+        font-size: 20px; 
     }
 
     .grid-container-data {
         display: grid;
-        grid-template-columns: 33.333333% 33.333333% 33.333333%;
+        grid-template-columns: 40% 40% 20%;
     }
 
     .grid-container-data span {

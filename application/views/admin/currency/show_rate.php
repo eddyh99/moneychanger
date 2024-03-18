@@ -14,9 +14,9 @@
 </head>
 <body class="bg-black">
     <div class="container-fluid">
-        <div class="row m-4 mt-5">
-            <h1 class="text-center pt-5 mt-5 fw-bolder text-uppercase text-white poppins-black" style="font-size: 86px;"><?= $_SESSION['logged_user']['cabang']?></h1>
-            <h1 class="text-center pt-3 pb-4 fw-semibold fst-italic text-white">Authorized Money Changer</h1>
+        <div class="row m-4">
+            <h1 class="text-center fw-bolder text-uppercase text-white poppins-black"><?= $_SESSION['logged_user']['cabang']?></h1>
+            <h1 class="text-center pb-2 fw-semibold fst-italic text-white">Authorized Money Changer</h1>
          
             <!-- Slider main container -->
             <div class="swiper d-none">
@@ -164,17 +164,17 @@
                         <div>
                             <div class="grid-container">
                                 <div class="grid-container-header">
-                                    <h3>Currency</h3>
+                                    <h3 class="text-start">Currency</h3>
                                     <h3>Buy</h3>
                                     <h3>Sell</h3>
                                 </div>
                                 <div class="grid-container-header">
-                                    <h3>Currency</h3>
+                                    <h3 class="text-start">Currency</h3>
                                     <h3>Buy</h3>
                                     <h3>Sell</h3>
                                 </div>
                                 <div class="grid-container-header">
-                                    <h3>Currency</h3>
+                                    <h3 class="text-start">Currency</h3>
                                     <h3>Buy</h3>
                                     <h3>Sell</h3>
                                 </div>
@@ -186,8 +186,8 @@
                                     <li class="curr-<?= $dt->class_cur?>">
                                         <div class="grid-container-data">
                                             <span class="d-flex align-items-center fw-bolder">
-                                                <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" height="70" class="me-2" alt="" >
-                                                <span class="text-black fw-bolder" style="font-size: 36px;">
+                                                <img src="<?= base_url()?>assets/flags_svg/<?= strtolower($dt->flag)?>.svg" class="me-2" alt="flag" >
+                                                <span class="text-black fw-bolder rate">
                                                     <?= $dt->currency?>
                                                 </span>
                                             </span>
