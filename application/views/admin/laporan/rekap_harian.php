@@ -113,14 +113,7 @@
                                     <h5 class="m-0 text-end fw-bolder">Rp <?= number_format($kasmasuk,2,".",",")?></h5>
                                 </div>
                             </div>
-                            <div class="col-10 mx-auto d-flex justify-content-between mt-3">
-                                <h5 class="ms-4">
-                                    Penukaran Bank :
-                                </h5>
-                                <h5 class="fw-bolder">Rp
-                                <?= number_format(@$saldo->total,2,".",",")?>
-                                </h5>
-                            </div>
+                         
                             <div class="col-10 mx-auto d-flex justify-content-between mt-3">
                                 <h5 class="ms-4">
                                     Sisa Kas Sebelumnya :
@@ -157,12 +150,20 @@
                                     <h5 class="m-0 text-end fw-bolder">Rp <?= number_format($kaskeluar,2,".",",")?></h5>
                                 </div>
                             </div>
+                            <div class="col-10 mx-auto d-flex justify-content-between mt-3">
+                                <h5 class="ms-4">
+                                    Penukaran Bank :
+                                </h5>
+                                <h5 class="fw-bolder">Rp
+                                <?= number_format(@$saldo->total,2,".",",")?>
+                                </h5>
+                            </div>
                         </div>
                         <div class="row my-4">
                             <div class="col-10 mx-auto d-flex justify-content-between">
                                 <div>
                                     <h5 >
-                                        Sisa Kas Hari ini  :
+                                        Total :
                                     </h5>
                                 </div>
                                 <div>
@@ -186,8 +187,8 @@
                                                 }
                                             }
 
-                                            $total_kasmasuk = $s_kasawal + $s_kasmasuk + $sisakas_sebelumnya + $saldo->total;
-                                            $sisa_kas = ($total_kasmasuk  - $s_kaskeluar) - ($pendapatan->jual + $pendapatan->beli );
+                                            $total_kasmasuk = $s_kasawal + $s_kasmasuk + $sisakas_sebelumnya ;
+                                            $sisa_kas = ($total_kasmasuk  - $s_kaskeluar) - ($pendapatan->jual + $pendapatan->beli) - $saldo->total ;
                                             if($sisa_kas < 0){
                                                 echo '<span class="text-danger">(' . number_format(trim($sisa_kas, '-'),2,".",",") . ')</span>';
                                             } else {

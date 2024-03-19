@@ -15,8 +15,8 @@
 <body class="bg-black">
     <div class="container-fluid">
         <div class="row m-4">
-            <h1 class="text-center fw-bolder text-uppercase text-white poppins-black"><?= $_SESSION['logged_user']['cabang']?></h1>
-            <h1 class="text-center pb-2 fw-semibold fst-italic text-white">Authorized Money Changer</h1>
+            <!-- <h1 class="text-center fw-bolder text-uppercase text-white poppins-black"><?= $_SESSION['logged_user']['cabang']?></h1>
+            <h1 class="text-center pb-2 fw-semibold fst-italic text-white">Authorized Money Changer</h1> -->
          
             <!-- Slider main container -->
             <div class="swiper d-none">
