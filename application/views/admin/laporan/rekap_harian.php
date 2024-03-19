@@ -201,7 +201,7 @@
                         </div>
                       
                     </section>                
-                    <div class="col-6 mx-auto">
+                    <div class="col-10 mx-auto">
                         <div class="col-10 mx-auto d-flex justify-content-between">
                             <button id="downloadpdf" class="p-2" >Download PDF</button>
                         </div>
