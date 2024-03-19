@@ -36,7 +36,14 @@
 							<tr>
 								<th>Invoice</th>
 								<th>Tanggal</th>
-								<th>Currency</th>
+                              	<th>
+                                  <select id="currency" class="form-select">
+                                    <option>----Currency----</option>
+                                    <?php foreach ($currency as $dt){?>
+                                    	<option value="<?=$dt->currency?>"><?=$dt->currency?></option>
+                                    <?php }?>
+                                  </select>
+                              	</th>
 								<th>Rate</th>
 								<th>Amount</th>
 								<th>Sub Total</th>
@@ -50,7 +57,7 @@
 								<th></th>
 								<th></th>
 								<th></th>
-								<th>Total</th>
+								<th></th>
 								<th></th>
 							</tr>
 						</tfoot>
