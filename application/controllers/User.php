@@ -1,6 +1,20 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/*----------------------------------------------------------
+    Modul Name  : User
+    Desc        : Modul ini di gunakan untuk melakukan setup user
+                  
+    Sub fungsi  : 
+    - index             : Tampilan halaman datatables seluruh user
+    - list_alluser    : Prosess call API kebutuhan databales user
+    - add_user        : Tampilan Input menambahkan  user
+    - adduser_process : Proses menyimpan data user
+    - edit_user       : Tampilan mengupdate user
+    - edituser_process : Proses mengupdate data user
+    - delete            : Proses hapus user
+------------------------------------------------------------*/ 
+
 class User extends CI_Controller
 {
 
@@ -31,17 +45,17 @@ class User extends CI_Controller
     {
 		$url = URLAPI . "/v1/user/get_alluser";
 		$response = expatAPI($url)->result->messages;
-        $result = array();
-        foreach($response as $dt){
-            if($dt->username != 'admin'){
-                $temp['username']   = $dt->username;
-                $temp['passwd']   = $dt->passwd;
-                $temp['nama']   = $dt->nama;
-                $temp['role']   = $dt->role;
-                array_push($result, $temp);
-            }
-        }
-        echo json_encode($result);        
+        // $result = array();
+        // foreach($response as $dt){
+        //     if($dt->username != 'admin'){
+        //         $temp['username']   = $dt->username;
+        //         $temp['passwd']   = $dt->passwd;
+        //         $temp['nama']   = $dt->nama;
+        //         $temp['role']   = $dt->role;
+        //         array_push($result, $temp);
+        //     }
+        // }
+        echo json_encode($response);        
 
     }
 

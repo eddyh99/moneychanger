@@ -31,7 +31,7 @@
         <div class="col-lg-12 d-flex align-items-strech">
             <div class="card border-expat w-100">
                 <div class="card-body">
-                    <section id="printthis" class="col-6 mx-auto">
+                    <section id="printthis" class="col-12 col-lg-10 mx-auto">
                         <h3 class="fw-semibold mb-4 text-center" style="color: #000 !important;">Rekap Harian</h3>
                         <div class="row">
                             <div class="col-10 mx-auto">

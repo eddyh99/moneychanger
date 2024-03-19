@@ -1,6 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/*----------------------------------------------------------
+    Modul Name  : Assign User
+    Desc        : Modul ini di gunakan untuk melakukan assign user ke cabang
+                  
+    Sub fungsi  : 
+    - index             : Tampilan halaman datatables seluruh assign user
+    - list_all_assignstaff    : Prosess call API kebutuhan databales assign user
+    - add_add_assignstaff        : Tampilan Input menambahkan assign user
+    - add_assignstaff_process : Proses menyimpan data assign user
+    - delete            : Proses hapus assign user
+------------------------------------------------------------*/ 
+
 class Staff extends CI_Controller
 {
 

@@ -31,10 +31,47 @@
 
     $(document).ready(function() {
         $('.country-select2').select2({
-            placeholder: "Pilih Username",
+            placeholder: "Pilih Negara",
             allowClear: true,
             theme: "bootstrap", 
             width: "100%"
+        });
+
+        $('.passpor-select2').select2({
+            placeholder: "Passpor/Identitas",
+            tags: true,
+		    selectOnClose: true,
+            allowClear: true,
+            theme: "bootstrap", 
+            width: "100%",
+            ajax: {
+                url: '<?= base_url()?>transaksi/getallcustomer',
+                dataType: 'JSON',
+                type: "GET",
+                delay: 250,
+                data: function (params){
+                    return {
+                        identitas: params.term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.passpor,
+                                text: item.passpor,
+                                nama: item.nama,
+                                nasionality: item.nasionality,
+                            }
+                        })
+                    };
+                }
+            },
+        }).on("select2:select", function (e){
+            var selected=e.params.data;
+            console.log(selected);
+            $('#customer').val(selected.nama)
+            $(".country-select2").val(selected.nasionality).trigger("change");
         });
     })
 

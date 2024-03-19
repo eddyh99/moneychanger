@@ -1,6 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/*----------------------------------------------------------
+    Modul Name  : Currency 
+    Desc        : Modul ini di gunakan untuk melakukan setup rate currency
+                  
+    Sub fungsi  : 
+    - rate_currency     : Tampilan halaman datatables seluruh rate currency
+    - list_allrate      : Prosess call API kebutuhan databales rate currency
+    - add_ratecurrency  : Tampilan Input menambahkan rate currency 
+    - addcurrency_process : Proses menyimpan data rate currency
+    - edit_ratecurrency   : Tampilan mengupdate rate currency
+    - editcurrency_process : Proses mengupdate data rate currency
+------------------------------------------------------------*/ 
+
 class Currency extends CI_Controller
 {
 
@@ -111,14 +124,9 @@ class Currency extends CI_Controller
 
     public function edit_ratecurrency($currency)
     {
-        $prevcurrency	= urlencode(base64_decode($this->security->xss_clean($currency)));
-
-        
+        $prevcurrency	= urlencode(base64_decode($this->security->xss_clean($currency)));        
         $url = URLAPI . "/v1/rate/getrate_bycurrency?cur=".$prevcurrency;
 		$result = expatAPI($url)->result->messages;
-
-        // echo '<pre>'.print_r($result,true).'</pre>';
-        // die;
 
         $data = array(
             'title'             => NAMETITLE . ' - Edit Rate Currency',

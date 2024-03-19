@@ -1,6 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/*----------------------------------------------------------
+    Modul Name  : Auth
+    Desc        : Modul ini di gunakan untuk Mengautentikasi 
+				  user Login 
+
+    Sub fungsi  : 
+	- index    			: Menampilkan halaman Login 
+	- auth_login        : Proses autentikasi user login
+	- show_rate         : Menampilkan rate currency untuk customer
+	- logout 			: Logout user
+------------------------------------------------------------*/ 
+
 class Auth extends CI_Controller
 {
 
@@ -62,8 +74,6 @@ class Auth extends CI_Controller
 		$temp_session = array(
 			'username'  => $result->username,
 			'role'      => $result->role,
-			// 'kontak'	=> $user->kontak,
-			// 'kecamatan'	=> $user->kecamatan,	
 			'cabang'	=> $result->cabang,
 			'idcabang'	=> $result->cabang_id,
 			'is_login'  => true,
@@ -71,6 +81,8 @@ class Auth extends CI_Controller
 		);
 		
 		$this->session->set_userdata('logged_user', $temp_session);
+
+        // User after login
 
 		$url = URLAPI . "/v1/user/get_byusername?username=".$result->username;
 		$user = expatAPI($url)->result->messages;
@@ -189,40 +201,6 @@ class Auth extends CI_Controller
         }
 
         $final_curr = array_merge(@$slide1, @$slide2, @$slide3, @$slide4);
-
-
-
-        // echo '<pre>'.print_r($final_curr,true).'</pre>';
-        // die;
-
-
-        // foreach($result as $key=>$val){
-            
-        //     if($key < 6){
-
-        //         $temp['flag'] = substr($val->currency,0,3);
-        //         $temp['currency'] = $val->currency;
-        //         $temp['rate'] = $val->rate;
-        //         $temp['rate_j'] = $val->rate_j;
-        //         array_push($slide1, (object)$temp);
-
-        //     }else if($key > 5 && $key < 12){
-        //         $temp['flag'] = substr($val->currency,0,3);
-        //         $temp['currency'] = $val->currency;
-        //         $temp['rate'] = $val->rate;
-        //         $temp['rate_j'] = $val->rate_j;
-        //         array_push($slide2, (object)$temp);
-        //     }else if($key > 11 && $key < 16){
-        //         $temp['flag'] = substr($val->currency,0,3);
-        //         $temp['currency'] = $val->currency;
-        //         $temp['rate'] = $val->rate;
-        //         $temp['rate_j'] = $val->rate_j;
-        //         array_push($slide3, (object)$temp);
-        //     }
-        // }
-        // echo '<pre>'.print_r($result,true).'</pre>';
-        // echo '<pre>'.print_r($slide1,true).'</pre>';
-        // die;
 
         $mdata = array(
             'title'         => NAMETITLE . ' - Show Rate',

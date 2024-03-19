@@ -1,6 +1,24 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+
+/*----------------------------------------------------------
+    Modul Name  : Kas
+    Desc        : Modul ini di gunakan untuk melakukan manajemen kas
+                  
+    Sub fungsi  : 
+    - index             : Tampilan halaman datatables seluruh kas hari ini
+    - list_allkastoday  : Prosess call API kebutuhan databales kas hari ini
+    - add_kas           : Tampilan Input menambahkan  kas
+    - addkas_process    : Proses menyimpan data kas
+    - penukaran         : Tampilan datatables penukaran ke bank hari ini
+    - getall_penukaran  : Prosess call API kebutuhan datatables penukaran bank
+    - detail_penukaran  : Tampilan modal detail penukaran bank hari ini
+    - update_penukaran_process  : Proses update modal rate penukaran bank
+    - getall_amount     : Tampilan modal seluruh amount penukaran bank
+    - add_setoran       : Tampilan input tambah penukaran bank hari ini
+    - add_setoran_process : Proses menyimpan penukaran menambahkan amount dan currency
+------------------------------------------------------------*/ 
 class Kas extends CI_Controller
 {
 
@@ -203,8 +221,6 @@ class Kas extends CI_Controller
             'detail'  => $final,
         );
 
-        // echo '<pre>'.print_r($ratenow,true).'</pre>';
-        // die;
         $url = URLAPI . "/v1/transaksi/updatePenukaran";
 		$response = expatAPI($url, json_encode($mdata));
         $result = $response->result;
@@ -312,16 +328,4 @@ class Kas extends CI_Controller
 	}
 	
 
-	public function setoranadd(){
-		$url = URLAPI . "/v1/cabang/get_allcabang";
-		$result = expatAPI($url)->result->messages;
-		 $data = array(
-            'title'             => NAMETITLE . ' - Tambah Kas',
-            'content'           => 'admin/setoran/add_setoran',
-            'extra'             => 'admin/setoran/js/_js_setoran',
-			'cabang'			=> $result, 
-            'kas_active'     	=> 'active',
-        );
-        $this->load->view('layout/wrapper', $data);
-	}
 }
