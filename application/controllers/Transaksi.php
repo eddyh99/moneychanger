@@ -167,12 +167,15 @@ class Transaksi extends CI_Controller
 	public function harian(){
 		$url = URLAPI . "/v1/cabang/get_allcabang";
 		$result = expatAPI($url)->result->messages;
-		
+      
+		$urlcur = URLAPI . "/v1/rate/get_allrate";
+		$cur = expatAPI($urlcur)->result->messages;   
 		$data = array(
             'title'             => NAMETITLE . ' - Laporan Harian',
             'content'           => 'admin/laporan/harian',
             'extra'             => 'admin/laporan/js/_js_harian',
 			'cabang'			=> $result,
+          	'currency'			=> $cur,
             'transaksi_harian_active'     => 'active',
         );
         $this->load->view('layout/wrapper', $data);

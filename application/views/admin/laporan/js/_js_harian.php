@@ -57,7 +57,11 @@ var table;
 			// 	$( api.column( 5 ).footer() ).html(
 			// 		total.toLocaleString("en")
 			// 	);
-    		// },		
+    		// },
+            "columnDefs": [ {
+              "targets": 2,
+              "orderable": false
+            } ],
             "columns": [
 				{ "data": "invoice_id"},
 				{ 
@@ -105,10 +109,18 @@ var table;
 					.reduce( function (a, b) {
 						return intVal(a) + intVal(b);
 					}, 0 );
-
+				total = api
+					.cells( null, 4, { page: 'current'} )
+					.render('display')
+					.reduce( function (a, b) {
+						return intVal(a) + intVal(b);
+					}, 0 );
 
 				// Update footer
-				$( api.column( 5 ).footer() ).html(
+				$( api.column( 4 ).footer() ).html(
+				 	total.toLocaleString('ID')
+				);
+              	$( api.column( 5 ).footer() ).html(
 				 	rendered.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 				);
 
@@ -118,4 +130,10 @@ var table;
 	$("#lihat").on("click",function(){
 	    table.ajax.reload();
 	})
+    
+    $("#currency").on("change",function(){
+      table.columns( 2 )
+            .search( this.value )
+            .draw();
+    })
 </script>
