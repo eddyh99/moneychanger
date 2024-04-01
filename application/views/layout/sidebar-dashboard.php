@@ -145,6 +145,16 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link  <?= @$rekappenukaran_active?>" href="<?= base_url()?>laporan/penukaranbank" aria-expanded="false">
+                       <span>
+                            <i class="ti ti-report"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Rekap Penukaran Bank
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$transaksi_harian_active?>" href="<?= base_url()?>transaksi/harian" aria-expanded="false">
                        <span>
                             <i class="ti ti-report-money"></i>
