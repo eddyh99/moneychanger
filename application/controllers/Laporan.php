@@ -81,27 +81,30 @@ class Laporan extends CI_Controller
 	public function harian()
 	{
 
-		$tgl		= $this->security->xss_clean($this->input->post('tgl'));
+        $tgl		= explode("-",$this->security->xss_clean($this->input->post('tgl')));
+		//$tgl		= $this->security->xss_clean($this->input->post('tgl'));
 		$cabang_id	= $this->security->xss_clean($this->input->post('cabang'));
+		$awal       = date_format(date_create($tgl[0]),"Y-m-d");
+		$akhir      = date_format(date_create($tgl[1]),"Y-m-d");
 		
-		if(!empty($tgl) || !empty($cabang_id)){
+		//if(!empty($tgl) || !empty($cabang_id)){
 
-			$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?tanggal=".$tgl."&cabang_id=".$cabang_id;
+			$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
 			$resultSaldoPenukaran = expatAPI($urlSaldoPenukaran)->result->messages;
 	
-			$urlPendapatanTransaksi = URLAPI . "/v1/laporan/getEarnToday?tanggal=".$tgl."&cabang_id=".$cabang_id;
+			$urlPendapatanTransaksi = URLAPI . "/v1/laporan/getEarnToday?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
 			$resultPendapatan = expatAPI($urlPendapatanTransaksi)->result->messages;
 	
-			$urlKas = URLAPI . "/v1/laporan/get_kasbydate?tanggal=".$tgl."&cabang_id=".$cabang_id;
+			$urlKas = URLAPI . "/v1/laporan/get_kasbydate?awal=".$awal."&akhir=".$akhir."&cabang_id=".$cabang_id;
 			$resultKas = expatAPI($urlKas)->result->messages;
 			
-			$urlSisaKasSebelumnya = URLAPI . "/v1/laporan/get_sisa?tanggal=".$tgl."&cabang_id=".$cabang_id;
+			$urlSisaKasSebelumnya = URLAPI . "/v1/laporan/get_sisa?tanggal=".$akhir."&cabang_id=".$cabang_id;
 			$resultSisaKasSebelumnya = expatAPI($urlSisaKasSebelumnya)->result->messages;
 	
 			$urlCabang = URLAPI . "/v1/cabang/get_allcabang";
 			$resultCabang = expatAPI($urlCabang)->result->messages;
 			
-		}else{
+		/*}else{
 			$tgl = date('Y-m-d');
 			$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?tanggal=".$tgl."&cabang_id=1";
 			$resultSaldoPenukaran = expatAPI($urlSaldoPenukaran)->result->messages;
@@ -118,7 +121,7 @@ class Laporan extends CI_Controller
 			$urlCabang = URLAPI . "/v1/cabang/get_allcabang";
 			$resultCabang = expatAPI($urlCabang)->result->messages;
 			
-		}
+		}*/
 		$data = array(
 			'title'             => NAMETITLE . ' - Rekapan Harian',
 			'content'           => 'admin/laporan/rekap_harian',
