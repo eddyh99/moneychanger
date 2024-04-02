@@ -35,7 +35,7 @@
 
         @media print {
             @page {
-                size: 80mm 250mm;
+                size: 75mm 250mm;
                 margin: 2mm;
             }
             .print-transaksi {
