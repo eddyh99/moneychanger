@@ -5,7 +5,7 @@
         <div class="row my-4">
             <label class="col-form-label col-1">Tanggal</label>
             <div class="col-3">
-                <input type="text" id="tgl" name="tgl" class="form-control" value="<?= $tgl?>" autocomplete="off">
+                <input type="text" id="tgl" name="tgl" class="form-control" autocomplete="off">
             </div>
             <div class="col-3">
                 <?php 
@@ -44,7 +44,7 @@
                                     Tanggal :
                                 </h5>
                                 <h5 class="fw-bolder">
-                                    <?= date_format(date_create($tgl), 'd-m-Y')?>
+                                    <?= @date_format(date_create($tgl), 'd-m-Y')?>
                                 </h5>
                             </div>
                         </div>
@@ -119,7 +119,15 @@
                                     Sisa Kas Sebelumnya :
                                 </h5>
                                 <h5 class="fw-bolder">Rp
-                                <?= number_format(@$sisakas_sebelumnya,2,".",",")?>
+                                <?php
+                                
+                                if($sisakas_sebelumnya < 0){
+                                    echo '<span class="text-danger">(' . number_format(trim($sisakas_sebelumnya, '-'),2,".",",") . ')</span>';
+                                } else {
+                                    echo number_format($sisakas_sebelumnya,2,".",",");
+                                }
+                                    // number_format(@$sisakas_sebelumnya,2,".",",")
+                                ?>
                                 </h5>
                             </div>
                          

@@ -72,22 +72,23 @@
                         </li>
                     </ul>
                 </li>
+
+                <?php }?>
 				<li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Transaction</span>
                 </li>
-
+                <?php if($_SESSION['logged_user']['role'] == 'admin'){?>
                 <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$penukaran_active?>" href="<?= base_url()?>kas/penukaran" aria-expanded="false">
                         <span>
-                            <i class="ti ti-pig-money"></i>
+                            <i class="ti ti-building-bank"></i>
                         </span>
                         <span class="hide-menu">
                             Penukaran Bank
                         </span>
                     </a>
                 </li>
-                <?php }?>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$kas_active?>" href="<?= base_url()?>kas" aria-expanded="false">
@@ -99,12 +100,8 @@
                         </span>
                     </a>
                 </li>
-                
-                <?php if($_SESSION['logged_user']['role'] == 'kasir'){?>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Transaction</span>
-                </li>
+                <?php }?>
+
 
                 <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$transaksi_active?>" href="<?= base_url()?>transaksi" aria-expanded="false">
@@ -126,7 +123,6 @@
                         </span>
                     </a>
                 </li>
-                <?php }?>
                 
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -145,7 +141,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link  <?= @$rekappenukaran_active?>" href="<?= base_url()?>laporan/penukaranbank" aria-expanded="false">
+                    <a class="sidebar-link  <?= @$rekappenukaran_active?>" href="<?= base_url()?>laporan/penukaranrekap" aria-expanded="false">
                        <span>
                             <i class="ti ti-report"></i>
                         </span>
