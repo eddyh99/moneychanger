@@ -239,7 +239,7 @@ class Kas extends CI_Controller
 
     public function getall_amount($id)
     {
-        $urlJumlahAmount = URLAPI."/v1/laporan/getListPenukaran?awal=".date('Y-m-d')."&akhir=".date('Y-m-d')."&cabang_id=".$id;
+        $urlJumlahAmount = URLAPI."/v1/transaksi/amountpenukaran?cabang_id=".$id;
         $resultJumlahAmount = expatAPI($urlJumlahAmount)->result->messages; 
 
         $mdata = array(
@@ -260,8 +260,6 @@ class Kas extends CI_Controller
 		$resultCabang = expatAPI($urlCabang)->result->messages;
 
 
-        $urlJumlahAmount = URLAPI . "/v1/laporan/getListPenukaran?awal=2024-03-01&akhir=2024-03-01&cabang_id=2";
-		$resultJumlahAmount = expatAPI($urlJumlahAmount)->result->messages;
 
         $data = array(
             'title'             => NAMETITLE . ' - Input Penukaran Bank',
@@ -269,7 +267,6 @@ class Kas extends CI_Controller
             'extra'             => 'admin/setoran/js/_js_index',
 			'cabang'			=> $resultCabang,
             'currency'          => $resultCurrency,
-            'amount'            => $resultJumlahAmount,
             'penukaran_active'  => 'active',
         );
         $this->load->view('layout/wrapper', $data);
@@ -278,6 +275,8 @@ class Kas extends CI_Controller
     public function add_setoran_process()
     {
         $cabang     = $this->security->xss_clean($this->input->post("cabang"));
+        $tipe       = $this->security->xss_clean($this->input->post("tipe"));
+        $keterangan = $this->security->xss_clean($this->input->post("keterangan"));
         $currency   = $this->security->xss_clean($this->input->post("currency"));
         $amount     = $this->security->xss_clean($this->input->post("amount"));
 
@@ -294,6 +293,8 @@ class Kas extends CI_Controller
 
         $mdata = array(
             'cabang_id'     => $cabang,
+            'tipe'          => $tipe,
+            'keterangan'    => $keterangan,
             'detail'        => $final
         );
 

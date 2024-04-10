@@ -24,11 +24,11 @@
                     <form action="<?= base_url()?>laporan/add_penukaranrekap_process" method="POST">
                         <div class="row col-8 mx-auto d-flex align-items-center">
                             <div class="col-12">
-                                <h3 class="fw-semibold mb-4 text-center" style="color: #000 !important;">Add Rekap Penukaran Bank</h3>
+                                <h3 class="fw-semibold mb-4 text-center" style="color: #000 !important;">Add Rekap Penukaran</h3>
                                 <hr>
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="penukaranbank" class="form-label">Tanggal Penukaran Bank</label>
+                                <label for="penukaranbank" class="form-label">Tanggal Penukaran</label>
                                 <div class="form-control d-flex">
                                     <input type="date" class="w-100 border-0 cursor-pointer py-0 penukaranbank" name="penukaranbank" onchange="isitanggal();" autocomplete="off">
                                 </div>
@@ -72,7 +72,7 @@
                         <div class="col-8 d-flex justify-content-center mx-auto">
                             <a id="tambahrekap" class="btn btn-outline-expat disabled mt-3 mx-2 d-flex align-items-center"> <i class="ti ti-circle-plus fs-5 me-2"></i>Tambah Rekapan</a>
                             <a id="lihatkeuntungan" class="btn btn-info mt-3 mx-2 d-flex align-items-center"> <i class="ti ti-history fs-5 me-2"></i>Lihat Keuntungan</a>
-                            <button type="submit" class="btn btn-expat mt-3 mx-2"><i class="ti ti-download fs-5 me-2"></i>Simpan Rekap Bank</button>
+                            <button type="submit" class="btn btn-expat mt-3 mx-2"><i class="ti ti-download fs-5 me-2"></i>Simpan Rekapan</button>
                         </div>
                     </form>
                 </div>

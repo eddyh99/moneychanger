@@ -5,7 +5,7 @@
             <a href="<?= base_url()?>laporan/add_penukaranrekap" class="btn btn-expat d-flex align-items-center">
                 <i class="ti ti-plus fs-5 me-2"></i>
                 <span>
-                    Rekap Penukaran Bank
+                    Rekap Penukaran
                 </span>
             </a>
         </div>
@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col-10 my-3  mx-auto">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h2 class="fw-semibold mb-4 text-start" style="color: #000 !important;">Rekap Penukaran Bank</h2>
+                                    <h2 class="fw-semibold mb-4 text-start" style="color: #000 !important;">Rekap Penukaran</h2>
                                     <h5>
                                         Tanggal <br>
                                         <span class="showtanggal">

@@ -82,10 +82,10 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link  <?= @$penukaran_active?>" href="<?= base_url()?>kas/penukaran" aria-expanded="false">
                         <span>
-                            <i class="ti ti-building-bank"></i>
+                            <i class="ti ti-exchange"></i>
                         </span>
                         <span class="hide-menu">
-                            Penukaran Bank
+                            Penukaran
                         </span>
                     </a>
                 </li>
@@ -146,7 +146,7 @@
                             <i class="ti ti-report"></i>
                         </span>
                         <span class="hide-menu">
-                            Rekap Penukaran Bank
+                            Rekap Penukaran 
                         </span>
                     </a>
                 </li>
@@ -166,7 +166,7 @@
                             <i class="ti ti-history"></i>
                         </span>
                         <span class="hide-menu">
-                            Penukaran 
+                            History Penukaran 
                         </span>
                     </a>
                 </li>
