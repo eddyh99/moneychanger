@@ -12,11 +12,11 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
     
 </head>
-<body class="bg-black">
-    <div class="container-fluid">
-        <div class="row m-4">
-            <h1 class="text-center fw-bolder text-uppercase text-white poppins-black"><?= $_SESSION['logged_user']['cabang']?></h1>
-            <h1 class="text-center pb-2 fw-semibold fst-italic text-white">Authorized Money Changer</h1>
+<body class="bg-black d-flex  " style="height: 100vh;">
+    <div class="container-fluid m-auto">
+        <div class="row m-auto">
+            <!-- <h1 class="text-center fw-bolder text-uppercase text-white poppins-black"><?= $_SESSION['logged_user']['cabang']?></h1>
+            <h1 class="text-center pb-2 fw-semibold fst-italic text-white">Authorized Money Changer</h1> -->
          
             <!-- Slider main container -->
             <div class="swiper d-none">
@@ -166,17 +166,17 @@
                                 <div class="grid-container-header">
                                     <h3 class="text-start">Currency</h3>
                                     <h3>Buy</h3>
-                                    <h3>Sell</h3>
+                                    <!-- <h3>Sell</h3> -->
                                 </div>
                                 <div class="grid-container-header">
                                     <h3 class="text-start">Currency</h3>
                                     <h3>Buy</h3>
-                                    <h3>Sell</h3>
+                                    <!-- <h3>Sell</h3> -->
                                 </div>
                                 <div class="grid-container-header">
                                     <h3 class="text-start">Currency</h3>
                                     <h3>Buy</h3>
-                                    <h3>Sell</h3>
+                                    <!-- <h3>Sell</h3> -->
                                 </div>
                             </div>
                             <ul class="grid-container-body" id="showcurrency">
@@ -198,11 +198,11 @@
                                                 <span class="rate"><?= number_format(@$dt->rate,2,".",",")?></span>
                                             <?php }?>
 
-                                            <?php if($dt->rate_j == 0.00){?>
+                                            <!-- <?php if($dt->rate_j == 0.00){?>
                                                 <span class="rate">-</span>
                                             <?php }else{?>
                                                 <span class="rate"><?= number_format(@$dt->rate_j,2,".",",")?></span>
-                                            <?php }?>
+                                            <?php }?> -->
 
 
                                         </div>

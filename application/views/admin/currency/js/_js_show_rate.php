@@ -149,12 +149,12 @@
     .grid-container-body li  {
         background-color: #f0f0f0;
         text-align: center;
-        margin: 5px;
+        margin: 4px;
         cursor: pointer;
     }
 
     .grid-container-body li img {
-        height: 30px;
+        height: 36px;
     }
 
     .grid-container-body li .rate  {
@@ -163,7 +163,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
+        font-size: 18px;
         padding: 0px;
     }
 
@@ -190,7 +190,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 30px;
+        font-size: 18px;
     }
 
 
@@ -204,14 +204,13 @@
 
     .grid-container-header {
         display: grid;
-        grid-template-columns: 40% 40% 20%;
+        grid-template-columns: 60% 40% ;
         background-color: #387ADF;
         padding: 10px;
    
     }
 
     .grid-container-header h3 {
-        /* padding: 5px; */
         font-size: 18px;
         font-weight: 900;
         text-align: center;
@@ -222,7 +221,7 @@
 
     .grid-container-data {
         display: grid;
-        grid-template-columns: 40% 40% 20%;
+        grid-template-columns: 60% 40% ;
     }
 
     .grid-container-data span {

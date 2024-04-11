@@ -3,6 +3,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<!-- DATE PICKER -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <script>
     $(window).on('load', function() {
@@ -28,8 +31,23 @@
 
     });
 
+    $("#tgl").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeYear: true,
+        changeMonth: true,
+        // minDate: 0,
+        yearRange: "-100:+20",
+    });
+
 
     $(document).ready(function() {
+        $('.cabang-select2').select2({
+            placeholder: "Pilih Cabang",
+            allowClear: true,
+            theme: "bootstrap", 
+            width: "100%"
+        });
+
         $('.country-select2').select2({
             placeholder: "Pilih Negara",
             allowClear: true,
@@ -147,7 +165,6 @@
         $("#tambahcurrency").click(function(e) {
             e.preventDefault();
             tap++;
-            console.log(tap);
             $('.wrapper-currency').append(`
                 <div class="row">
                     <hr>

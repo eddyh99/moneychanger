@@ -53,17 +53,43 @@
                         </div>
                     </div>
 
-
-                    <div class="d-flex justify-content-between">
-                        <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline text-uppercase"><?= $_SESSION['logged_user']['cabang']?></span></h5>
-                        <button type="button" class="btn mb-1 d-flex justify-content-center align-items-center bg-primary-subtle text-primary px-4 fs-4 ">
-                            <i class="ti ti-info-circle fs-6  me-2"></i>
-                            <span class="preview-jenis-transaksi  fs-5">
-                                Buy
-                            </span>
-                        </button>
-                    </div>
                     <form action="<?= base_url()?>transaksi/transaksi_process" method="POST">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <?php if($_SESSION['logged_user']['role'] == 'kasir'){?>
+                                <h5 class="card-title fw-semibold mb-4">Cabang: <span class="text-decoration-underline text-uppercase"><?= $_SESSION['logged_user']['cabang']?></span></h5>
+                            <?php } else {?>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label for="tgl" class="form-label">Tanggal</label>
+                                            <div class="form-control d-flex py-1">
+                                                <input type="text" class="w-100 border-0 cursor-pointer" name="tgl" id="tgl" autocomplete="off">
+                                                <label for="tgl" class="cursor-pointer">
+                                                    <i class="ti ti-calendar-event fs-6"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="address" class="form-label">Cabang</label>
+                                            <select class="cabang-select2" id="cabang" name="cabang" required>
+                                                <option value=""></option>
+                                                <?php foreach($cabang as $dt){?>
+                                                    <option value="<?= $dt->id?>"><?= $dt->nama?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <button type="button" class="btn mb-1 d-flex justify-content-center align-items-center bg-primary-subtle text-primary px-4 fs-4 ">
+                                <i class="ti ti-info-circle fs-6  me-2"></i>
+                                <span class="preview-jenis-transaksi  fs-5">
+                                    Buy
+                                </span>
+                            </button>
+                        </div>
+                   
                         <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
                         <input type="hidden" id="jenistransaksi" name="jenistransaksi" value="beli">
                         <div class="row pt-2 mb-5">

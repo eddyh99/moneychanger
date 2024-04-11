@@ -34,11 +34,24 @@
                             </select>
                         </div>
 
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <button id="btnjumlahamount" class="btn btn-success disabled" type="button" data-bs-toggle="modal" data-bs-target="#jumlahamount">
                                 <i class="ti ti-currency-dollar fs-5"></i>
                                 Jumlah Amount
                             </button>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tipe" class="form-label">Tipe</label>
+                            <select class="form-select" id="tipe" name="tipe" required>
+                                <option value="bank">Bank</option>
+                                <option value="agen">Agen</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan Keterangan . . ." required autocomplete="off">
                         </div>
 
                         <div class="wrapper-currency">

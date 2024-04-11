@@ -56,8 +56,6 @@ class Auth extends CI_Controller
 		$url = URLAPI . "/auth/signin";
 		$response = expatAPI($url, json_encode($mdata));
 		$result = $response->result->messages;
-
-
 		if (@$response->status != 200) {
 			$this->session->set_flashdata('error', $result->error);
 			redirect("/");
@@ -83,7 +81,6 @@ class Auth extends CI_Controller
 		$this->session->set_userdata('logged_user', $temp_session);
 
         // User after login
-
 		$url = URLAPI . "/v1/user/get_byusername?username=".$result->username;
 		$user = expatAPI($url)->result->messages;
 

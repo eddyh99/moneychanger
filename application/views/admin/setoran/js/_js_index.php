@@ -32,13 +32,17 @@
 
 
 <script>
-  $('#tgl').daterangepicker({
-    startDate: moment(),
-    opens:'right',
-    locale: {
-      format: 'DD MMM YYYY'
-    }
-  });
+	$('#tgl').daterangepicker({
+		startDate: moment(),
+		opens:'right',
+		locale: {
+		format: 'DD MMM YYYY'
+		}
+	});
+
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 
 var table;
 	table = $('#table_penukaran_bank').DataTable({
@@ -57,27 +61,27 @@ var table;
 						return data;
 					  }
 			},
-			// "drawCallback": function () {
-    		// 	  var api = this.api();
-    		// 	  var total=api.column( 3,{filter:'applied'} ).data().sum();
-    		// 	  $( api.column( 3 ).footer() ).html(
-    		// 		total.toLocaleString("en")
-    		// 	  );
-    		// },		
+	
             "columns": [
-				  { 
+				{ 
 					data: null,
 					"sortable": false, 
 						render: function (data, type, row, meta) {
 						return meta.row + meta.settings._iDisplayStart + 1;
 					}
-				  },
-				  { "data": "cabang"},
-                  { 
+				},
+				{ "data": "cabang"},
+				{ 
+					data: null, "mRender": function(data, type, full, meta) {
+						  return capitalizeFirstLetter(full.tipe);
+					} 
+				},
+				{ 
 					data: null, "mRender": function(data, type, full, meta) {
 						return full.tanggal.slice(0, 10).split("-").reverse().join("-");
 					} 
-				  },
+				},
+					{ "data": "keterangan"},
                   { 
 						data: null, "mRender": function(data, type, full, meta) {
 							var btn_detail = `

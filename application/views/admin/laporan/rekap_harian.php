@@ -5,7 +5,7 @@
         <div class="row my-4">
             <label class="col-form-label col-1">Tanggal</label>
             <div class="col-3">
-                <input type="text" id="tgl" name="tgl" class="form-control" value="<?= $tgl?>" autocomplete="off">
+                <input type="text" id="tgl" name="tgl" class="form-control" autocomplete="off">
             </div>
             <div class="col-3">
                 <?php 
@@ -44,7 +44,7 @@
                                     Tanggal :
                                 </h5>
                                 <h5 class="fw-bolder">
-                                    <?= date_format(date_create($tgl), 'd-m-Y')?>
+                                    <?= @date_format(date_create($tgl), 'd-m-Y')?>
                                 </h5>
                             </div>
                         </div>
@@ -113,20 +113,21 @@
                                     <h5 class="m-0 text-end fw-bolder">Rp <?= number_format($kasmasuk,2,".",",")?></h5>
                                 </div>
                             </div>
-                            <div class="col-10 mx-auto d-flex justify-content-between mt-3">
-                                <h5 class="ms-4">
-                                    Penukaran Bank :
-                                </h5>
-                                <h5 class="fw-bolder">Rp
-                                <?= number_format(@$saldo->total,2,".",",")?>
-                                </h5>
-                            </div>
+                         
                             <div class="col-10 mx-auto d-flex justify-content-between mt-3">
                                 <h5 class="ms-4">
                                     Sisa Kas Sebelumnya :
                                 </h5>
                                 <h5 class="fw-bolder">Rp
-                                <?= number_format(@$sisakas_sebelumnya,2,".",",")?>
+                                <?php
+                                
+                                if($sisakas_sebelumnya < 0){
+                                    echo '<span class="text-danger">(' . number_format(trim($sisakas_sebelumnya, '-'),2,".",",") . ')</span>';
+                                } else {
+                                    echo number_format($sisakas_sebelumnya,2,".",",");
+                                }
+                                    // number_format(@$sisakas_sebelumnya,2,".",",")
+                                ?>
                                 </h5>
                             </div>
                          
@@ -162,7 +163,7 @@
                             <div class="col-10 mx-auto d-flex justify-content-between">
                                 <div>
                                     <h5 >
-                                        Sisa Kas Hari ini  :
+                                        Total :
                                     </h5>
                                 </div>
                                 <div>
@@ -186,8 +187,8 @@
                                                 }
                                             }
 
-                                            $total_kasmasuk = $s_kasawal + $s_kasmasuk + $sisakas_sebelumnya + $saldo->total;
-                                            $sisa_kas = ($total_kasmasuk  - $s_kaskeluar) - ($pendapatan->jual + $pendapatan->beli );
+                                            $total_kasmasuk = $s_kasawal + $s_kasmasuk + $sisakas_sebelumnya ;
+                                            $sisa_kas = ($total_kasmasuk  - $s_kaskeluar) - ($pendapatan->jual + $pendapatan->beli) - 0;
                                             if($sisa_kas < 0){
                                                 echo '<span class="text-danger">(' . number_format(trim($sisa_kas, '-'),2,".",",") . ')</span>';
                                             } else {
@@ -200,7 +201,7 @@
                         </div>
                       
                     </section>                
-                    <div class="col-6 mx-auto">
+                    <div class="col-10 mx-auto">
                         <div class="col-10 mx-auto d-flex justify-content-between">
                             <button id="downloadpdf" class="p-2" >Download PDF</button>
                         </div>

@@ -27,6 +27,8 @@ class Transaksi extends CI_Controller
 
     public function index()
     {
+        $urlCabang = URLAPI . "/v1/cabang/get_allcabang";
+		$resultCabang = expatAPI($urlCabang)->result->messages;
 
         $url = URLAPI . "/v1/rate/get_allrate";
 		$response = expatAPI($url)->result->messages;   
@@ -36,6 +38,7 @@ class Transaksi extends CI_Controller
             'content'           => 'admin/kasir/index',
             'extra'             => 'admin/kasir/js/_js_index',
             'currency'          => $response,
+            'cabang'            => $resultCabang,
             'transaksi_active'      => 'active',
         );
         $this->load->view('layout/wrapper', $data);
@@ -62,6 +65,8 @@ class Transaksi extends CI_Controller
 		$this->form_validation->set_rules('alamat', 'Alamat Customer', 'trim|required');
 		$this->form_validation->set_rules('country', 'Negara Customer', 'trim|required');
 		$this->form_validation->set_rules('passpor', 'Passpor Customer', 'trim|required');
+		$this->form_validation->set_rules('tgl', 'Tanggal', 'trim');
+		$this->form_validation->set_rules('cabang', 'Cabang', 'trim');
 		$this->form_validation->set_rules('jenistransaksi', 'Jenis Transaksi', 'trim|required');
 		$this->form_validation->set_rules('currency[]', 'Currency', 'trim|required');
 		$this->form_validation->set_rules('lembar[]', 'Lembar', 'trim|required');
@@ -77,6 +82,8 @@ class Transaksi extends CI_Controller
         $customer       = $this->security->xss_clean($this->input->post("customer"));
         $alamat         = $this->security->xss_clean($this->input->post("alamat"));
         $country        = $this->security->xss_clean($this->input->post("country"));
+        $tgl            = $this->security->xss_clean($this->input->post("tgl"));
+        $cabang         = $this->security->xss_clean($this->input->post("cabang"));
         $jenis          = $this->security->xss_clean($this->input->post("jenistransaksi"));
         $passpor        = $this->security->xss_clean($this->input->post("passpor"));
         $currency       = $this->security->xss_clean($this->input->post("currency"));
@@ -130,7 +137,11 @@ class Transaksi extends CI_Controller
 		}
 
         $mdata = array(
-            'cabang_id'         => $_SESSION['logged_user']['idcabang'],
+            'cabang_id'         => (
+                                    ($_SESSION['logged_user']['role'] == 'admin') ? 
+                                    $cabang : $_SESSION['logged_user']['idcabang']
+                                ),
+            'tanggal'           => (($_SESSION['logged_user']['role'] == 'admin') ? $tgl : null),
             'nama'              => $customer,
             'alamat'            => $alamat,
             'passpor'           => $passpor,
