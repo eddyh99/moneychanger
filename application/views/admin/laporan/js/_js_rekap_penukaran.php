@@ -41,9 +41,9 @@
                 cabang_id: $("#cabang").val()
             },
             success: function (response) {
+                $("tr").remove();
                 $("#loading").removeClass("d-block");
                 $("#loading").addClass("d-none");
-                
                 let result = JSON.parse(response);
                 let saldopenukaran = result.saldo;
                 let pembelian = result.details;

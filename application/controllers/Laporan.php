@@ -140,7 +140,7 @@ class Laporan extends CI_Controller
 		$urlrekapanbank = URLAPI . "/v1/laporan/getrekapan?tanggal=".$tgl."&cabang_id=".$cabang_id;
 		$resultrekapanbank = expatAPI($urlrekapanbank)->result->messages;
 		
-		$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?awal=2024-04-10&akhir=2024-04-10&cabang_id=3";
+		$urlSaldoPenukaran = URLAPI . "/v1/laporan/getsaldoTukar?awal=".$tgl."&akhir=".$tgl."&cabang_id=".$cabang_id;
 		$resultSaldoPenukaran = expatAPI($urlSaldoPenukaran)->result->messages;
 
 		$temp_final = array();
