@@ -8,6 +8,23 @@
         cursor: pointer;
     }
 
+    table {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    table th,
+    table td {
+        padding: .625em;
+        /* text-align: center; */
+        font-size: 16px;
+    }
+
+    .td-pembelian {
+        padding-left: 100px; 
+    }
+
+
 </style>
 
 
@@ -28,43 +45,75 @@
                 $("#loading").addClass("d-none");
                 
                 let result = JSON.parse(response);
-                let saldo = result.saldo;
+                let saldopenukaran = result.saldo;
+                let pembelian = result.details;
                 let totalpembelian = [];
+                let totalsaldo = 0 
                 let tanggal = $("#tgl").val();
                 $(".showtanggal").text(tanggal.split("-").reverse().join("-"));
-                
-                result.details.forEach((el, i) => {
-                    let pembelian = Number(el.pembelian);
-                    if (!totalpembelian.includes(pembelian)) {
-                        totalpembelian.push(pembelian);
+
+                saldopenukaran.forEach((el, i) => {
+                    let lastsaldo = Number(el.total);
+                    totalsaldo += lastsaldo;
+                    
+                    $("#summarypenukaran").append(`
+                        <tr>
+                            <td class="text-start">Penukaran ${el.keterangan}</td>
+                            <td class="text-start">Rp ${lastsaldo.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+                            <td></td>
+                        </tr>                                            
+
+                    `);
+                });
+
+
+                pembelian.forEach((el, i) => {
+                    let lastpembelian = Number(el.pembelian);
+                    if (!totalpembelian.includes(lastpembelian)) {
+                        totalpembelian.push(lastpembelian);
                     }
+                    
+                    $("#summarypenukaran").append(`
+                        
+                        <tr>
+                            <td class="text-start td-pembelian">Pembelian ${el.tanggal.slice(0, 10).split("-").reverse().join("-")}</td>
+                            <td></td>
+                            <td class="text-end">Rp ${lastpembelian.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+                        </tr>                                            
 
-                    $(".tambahrekap").append(`
-                        <div class="row mt-4">
-                            <div class="col-10 mx-auto d-flex justify-content-between">
-                                <h5>
-                                    Pembelian ${el.tanggal.slice(0, 10).split("-").reverse().join("-")}
-                                </h5>
-                                <h5 class="fw-bolder">Rp
-                                    <span class="showpembelian">
-                                        ${pembelian.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                                    </span>
-                                </h5>
-                            </div>
-                        </div>
-                    `);  
-                })
+                    `);
+                });
 
-                let sumtotal = totalpembelian.reduce((partialSum, a) => partialSum + a, 0);
-                let keuntungan = saldo - sumtotal;
-                let newKeuntungan = keuntungan.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                if(keuntungan < 0){
-                    $('.showkeuntungan').text("("+newKeuntungan.replace('-', '')+")");
-                    $('.showkeuntungan').addClass('text-danger');
-                }else{
-                    $('.showkeuntungan').text(newKeuntungan)
-                    $('.showkeuntungan').removeClass('text-danger');
-                }
+                let jumlahpembelian = totalpembelian.reduce((partialSum, a) => partialSum + a, 0);
+                let keuntungan = totalsaldo - jumlahpembelian;
+                 let newKeuntungan = keuntungan.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+
+                $("#summarypenukaran").append(`
+                    <tr>
+                        <td class="fw-bolder">Total</td>
+                        <td class="text-start fw-semibold">Rp ${totalsaldo.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+                        <td class="text-end fw-semibold">Rp ${jumlahpembelian.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+                    </tr>                                           
+                `);
+
+               if(keuntungan < 0){
+                   $("#summarypenukaran").append(`
+                       <tr>
+                           <td class="fw-bolder">Keuntungan</td>
+                           <td></td>
+                           <td class="text-end text-danger fw-bolder">Rp (${keuntungan.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')})</td>
+                       </tr>                                           
+                   `);
+               }else{
+                    $("#summarypenukaran").append(`
+                       <tr>
+                           <td class="fw-bolder">Keuntungan</td>
+                           <td></td>
+                           <td class="text-end fw-bolder">Rp ${keuntungan.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+                       </tr>                                           
+                   `);
+               }
 
             },
             error: function(jqXHR, textStatus, errorThrown) {

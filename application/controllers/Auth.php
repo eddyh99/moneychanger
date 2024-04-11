@@ -81,7 +81,6 @@ class Auth extends CI_Controller
 		$this->session->set_userdata('logged_user', $temp_session);
 
         // User after login
-
 		$url = URLAPI . "/v1/user/get_byusername?username=".$result->username;
 		$user = expatAPI($url)->result->messages;
 

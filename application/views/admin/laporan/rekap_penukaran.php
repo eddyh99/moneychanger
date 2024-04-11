@@ -62,17 +62,52 @@
                             </div>
                         </div>
                         <div class="tambahrekap">
-
+                            <div class="row">
+                                <div class="col-10 mx-auto ">
+                                    <table id="summarypenukaran" border="2" width="1400"  cellpadding="0" cellspacing="0" class="mx-auto">
+                                        <!-- <tr>
+                                            <td class="text-start">Penukaran 1</td>
+                                            <td class="text-start">Rp.10.000</td>
+                                            <td></td>
+                                        </tr>                                            
+                                        <tr>
+                                            <td class="text-start">Penukaran 2</td>
+                                            <td class="text-start">Rp.10.000</td>
+                                            <td></td>
+                                        </tr>                                            
+                                        <tr>
+                                            <td class="text-start td-pembelian">Pembelian 10-10-2023</td>
+                                            <td></td>
+                                            <td class="text-end">Rp 20.000.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start td-pembelian">Pembelian 10-10-2023</td>
+                                            <td></td>
+                                            <td class="text-end td-pembelian">Rp 20.000.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td class="text-start">Rp.20.0000</td>
+                                            <td class="text-end">Rp.20.0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Keuntungan</td>
+                                            <td></td>
+                                            <td class="text-end">Rp.50.0000</td>
+                                        </tr> -->
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-10 mx-auto d-flex justify-content-center">
+                            <div class="col-10 mx-auto  d-flex justify-content-center">
                                 <div id="loading" class="spinner-border d-none" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-10 mx-auto d-flex justify-content-between">
+                            <!-- <div class="col-10 mx-auto d-flex justify-content-between">
                                 <h5 class="text-end">
                                     Total keuntungan
                                 </h5>
@@ -81,7 +116,7 @@
                                         0
                                     </span>
                                 </h5>
-                            </div>
+                            </div> -->
                         </div>
                       
                     </section>         
